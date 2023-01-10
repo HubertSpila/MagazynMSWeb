@@ -7,7 +7,6 @@ namespace WarehouseManagmentWEB.Tools.Api
         public static string GetToken()
         {
             RestClient client = new RestClient("https://localhost:7145/api/authentication");
-            //client.Timeout = -1;
             var request = new RestRequest("https://localhost:7145/api/authentication", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             var body = @"{
@@ -19,6 +18,9 @@ namespace WarehouseManagmentWEB.Tools.Api
             @"    }";
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
+
+            if (response.Content == null) return String.Empty;
+
             return response.Content.ToString();
         }
     }
