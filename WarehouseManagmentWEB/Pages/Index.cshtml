@@ -4,11 +4,37 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    var o = Orders.GetOrders();
+}
+@functions{
+    public string GetToken(bool fromClick = false)
+    {
+        if(fromClick)
+            Authentication.GetToken();
+
+        return string.Empty;
+    }
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>Token: </p>
+    @using (Html.BeginForm("Another", "Diffrent", FormMethod.Post, new { id ="frm"}))
+    {
+       @Html.LabelFor(model => model.UserName);
+       @Html.EditorFor(model => model.UserName);
+       <br/>
+       @Html.LabelFor(model => model.Password);
+       @Html.EditorFor(model => model.Password);
+
+        <button onclick="Send()">Login</button>
+    }
+    <br>
+   
+    
 </div>
+@section scripts{
+<script>
+    function Send(){
+        $(#'NieRuszac').html('@GetToken(true)');
+    }
+</script>
+}
+

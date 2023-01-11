@@ -21,6 +21,7 @@ namespace WarehouseManagmentWEB.Tools.Api
 
             if (response.Content == null) return String.Empty;
 
+            Singleton.Instance.Token = response.Content;
             return response.Content.ToString();
         }
     }
