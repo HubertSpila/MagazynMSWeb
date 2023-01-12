@@ -1,0 +1,43 @@
+﻿@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using WarehouseManagmentWEB.Controllers
+@using WarehouseManagmentWEB.Tools
+@using WarehouseManagmentWEB.Tools.Api;
+@model IndexModel
+@{
+    ViewBag.Title = "Login";
+}
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="text-center">
+
+        <li><a asp-controller="App" asp-action="Index">Odnośnik do controllera</a> </li>
+        <li><a asp-controller="App" asp-action="Error">Odnośnik do strony</a> </li>
+
+        @using (Html.BeginForm("Index", "App", FormMethod.Post))
+        {
+            <form method="post">
+                <input type="text" name="login" />
+                <input type="password" name="password" />
+                <input type="submit" asp-asp-page-handler="Submit">
+                <hr />
+            </form>
+        }
+
+        <br>
+
+        @*wyświetlanie listy danych
+            <h1>Lista danych</h1>
+        @foreach (var item in lista)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => item.Item1)
+            </li>
+            <li>
+                @Html.DisplayFor(modelItem => item.Item2)
+            </li>
+
+        }*@
+    </div>
+</body>
