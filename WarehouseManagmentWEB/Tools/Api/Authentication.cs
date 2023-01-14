@@ -1,22 +1,20 @@
 ﻿using RestSharp;
+using WarehouseManagmentWEB.Models;
 
 namespace WarehouseManagmentWEB.Tools.Api
 {
     public static class Authentication
     {
-        public static string GetToken(string login, string password)
+        public static string GetToken(LoginModel form)
         {
-            if (login == "" || password == "")
-                return string.Empty;
-
             RestClient client = new RestClient("https://localhost:7145/api/authentication");
             var request = new RestRequest("https://localhost:7145/api/authentication", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             var body = @"{
 " + "\n" +
-            $@"        ""username"": ""{login}"",
+            $@"        ""username"": ""{form.Login}"",
 " + "\n" +
-            $@"        ""password"": ""{password}""
+            $@"        ""password"": ""{form.Password}""
 " + "\n" +
             @"    }";
             request.AddParameter("application/json", body, ParameterType.RequestBody);

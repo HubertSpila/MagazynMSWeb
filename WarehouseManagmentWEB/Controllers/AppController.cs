@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WarehouseManagmentWEB.Models;
 using WarehouseManagmentWEB.Pages;
+using WarehouseManagmentWEB.Tools.Api;
 
 namespace WarehouseManagmentWEB.Controllers
 {
@@ -16,11 +17,22 @@ namespace WarehouseManagmentWEB.Controllers
         [HttpPost]
         public IActionResult Index(LoginModel form)
         {
-            var t = this.Request;
-            return View(new IndexModel());
+            if(form.Login==""||form.Password=="")
+                return View(new IndexModel());
+
+            string token = Authentication.GetToken(form);
+            if(token == string.Empty)
+                return View(new IndexModel());
+
+            Singleton.Instance.Token= token;
+            return MainPage();
         }
 
         public IActionResult Error()
+        {
+            return View();
+        }
+        public IActionResult MainPage()
         {
             return View();
         }
