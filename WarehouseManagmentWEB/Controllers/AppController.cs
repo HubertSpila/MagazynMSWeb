@@ -25,7 +25,8 @@ namespace WarehouseManagmentWEB.Controllers
                 return View(new IndexModel());
 
             Singleton.Instance.Token= token;
-            return MainPage();
+            //return MainPage();
+            return RedirectToPage("/Shared/MainPage");
         }
 
         public IActionResult Error()

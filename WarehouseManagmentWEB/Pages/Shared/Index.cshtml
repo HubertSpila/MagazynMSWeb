@@ -5,6 +5,7 @@
 @model IndexModel
 @{
     ViewBag.Title = "Login";
+    //Layout = null;
 }
 <head>
     <title>@ViewBag.Title</title>
@@ -12,10 +13,8 @@
 <body>
     <div class="text-center">
 
-        <li><a asp-controller="App" asp-action="Index">Odnośnik do controllera</a> </li>
-        <li><a asp-controller="App" asp-action="Error">Odnośnik do strony</a> </li>
-        <button src="MainPage.cshtml">Odnośnik do MainPage</button>
-
+        @*<li><a asp-controller="App" asp-action="Index">Odnośnik do controllera</a> </li>
+        <button><a asp-controller="App" asp-action="Index">Odnośnik do strony</a> </button>*@
 
         @using (Html.BeginForm("Index", "App", FormMethod.Post))
         {
