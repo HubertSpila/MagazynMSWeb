@@ -24,5 +24,12 @@
                 }
             }
         }
+        public static string TokenWithout()
+        {
+            string token = Instance.Token.Remove(0, 1);
+            token = token.Remove(token.Length - 1, 1);
+            
+            return token;
+        }
     }
 }
