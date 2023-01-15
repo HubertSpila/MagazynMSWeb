@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using WarehouseManagmentWEB.Models;
+using WarehouseManagmentWEB.PostModels;
 using WarehouseManagmentWEB.Pages;
 using WarehouseManagmentWEB.Tools.Api;
 
@@ -17,7 +17,7 @@ namespace WarehouseManagmentWEB.Controllers
         [HttpPost]
         public IActionResult Index(LoginModel form)
         {
-            if(form.Login==""||form.Password=="")
+            if(form == null || form.Login==""||form.Password=="")
                 return View(new IndexModel());
 
             string token = Authentication.GetToken(form);

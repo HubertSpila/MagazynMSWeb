@@ -9,7 +9,9 @@
     ViewBag.Title = "MainPage";
     Layout = "_Layout_Cartons";
 
+    var cartons = Cartons.GetCartons();
 }
+
 
 
 <html>
@@ -18,6 +20,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-    kartony
+    @if (cartons != null)
+    {
+        foreach (var item in cartons)
+        {
+            <li>@item.ID_kartonu @item.Wysokosc @item.Szerokosc @item.Glebokosc @item.Stan_magazynowy @item.Potrzebna_ilosc</li>
+
+        }
+    }
 </body>
 </html>

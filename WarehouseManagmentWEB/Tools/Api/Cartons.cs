@@ -3,19 +3,19 @@ using WarehouseManagmentWEB.Tools.Api.Models;
 
 namespace WarehouseManagmentWEB.Tools.Api
 {
-    public static class Orders
+    public static class Cartons
     {
-        public static List<OrderModel>? GetOrders()
+        public static List<CartonModel>? GetCartons()
         {
             string token = Singleton.TokenWithout();
 
             var client = new RestClient("https://localhost:7145/api/");
-            var request = new RestRequest("orders", Method.Get);
+            var request = new RestRequest("cartons", Method.Get);
             request.AddHeader("Authorization", $"Bearer {token}");
             var body = @"";
             request.AddParameter("application/json", body, ParameterType.RequestBody);
 
-            List<OrderModel>? response = client.Execute<List<OrderModel>>(request).Data;
+            List<CartonModel>? response = client.Execute<List<CartonModel>>(request).Data;
 
             return response;
         }

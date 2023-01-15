@@ -1,5 +1,5 @@
 ﻿using RestSharp;
-using WarehouseManagmentWEB.Models;
+using WarehouseManagmentWEB.PostModels;
 
 namespace WarehouseManagmentWEB.Tools.Api
 {
@@ -7,8 +7,8 @@ namespace WarehouseManagmentWEB.Tools.Api
     {
         public static string GetToken(LoginModel form)
         {
-            RestClient client = new RestClient("https://localhost:7145/api/authentication");
-            var request = new RestRequest("https://localhost:7145/api/authentication", Method.Post);
+            RestClient client = new RestClient("https://localhost:7145/api/");
+            var request = new RestRequest("authentication", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             var body = @"{
 " + "\n" +

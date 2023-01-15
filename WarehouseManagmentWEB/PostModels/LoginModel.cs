@@ -1,4 +1,4 @@
-﻿namespace WarehouseManagmentWEB.Models
+﻿namespace WarehouseManagmentWEB.PostModels
 {
     public class LoginModel
     {
