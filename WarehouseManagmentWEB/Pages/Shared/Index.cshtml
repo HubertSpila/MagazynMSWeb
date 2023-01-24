@@ -5,7 +5,6 @@
 @model IndexModel
 @{
     ViewBag.Title = "Login";
-    //Layout = null;
 }
 <head>
     <title>@ViewBag.Title</title>
@@ -25,20 +24,8 @@
                 <hr />
             </form>
         }
-
+        <p>@Model?.IsAuthorized</p>
         <br>
 
-        @*wyświetlanie listy danych
-            <h1>Lista danych</h1>
-        @foreach (var item in lista)
-        {
-            <li>
-                @Html.DisplayFor(modelItem => item.Item1)
-            </li>
-            <li>
-                @Html.DisplayFor(modelItem => item.Item2)
-            </li>
-
-        }*@
     </div>
 </body>

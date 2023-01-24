@@ -5,9 +5,11 @@ namespace WarehouseManagmentWEB.Pages
 {
     public class IndexModel : PageModel
     {
+        public string IsAuthorized = "";
 
-        public IndexModel()
+        public IndexModel(string isAuthorized = "")
         {
+            IsAuthorized = isAuthorized;
         }
 
         public void OnGet()
