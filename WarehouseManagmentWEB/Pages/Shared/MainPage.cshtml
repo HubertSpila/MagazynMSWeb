@@ -16,26 +16,78 @@
     <title>MotorcycleScreens Menager</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
-        #hhh{
-            color: aqua;
+       #zamowienia {
+    width: 250px;
+    height: 250px;
+    border: 3px solid rgb(122, 123, 117);
+    background-color: rgb(255, 140, 26);
+    text-align: center;
+    float: left;
+    margin: 10px;
+    color: black;
+  }
+  #kartony {
+    width: 250px;
+    height: 250px;
+    border: 3px solid rgb(122, 123, 117);
+    background-color: rgb(255, 140, 26);
+    text-align: center;
+    float: left;
+    margin: 10px;
+    color: black;
+  }
 
+#kartoteka {
+    width: 250px;
+    height: 250px;
+    border: 3px solid rgb(122, 123, 117);
+    background-color: rgb(255, 140, 26);
+    text-align: center;
+    float: left;
+    margin: 10px;
+    color: black;
+  }
+
+#wykres {
+    width: 250px;
+    height: 250px;
+    border: 3px solid rgb(122, 123, 117);
+    background-color: rgb(255, 140, 26);
+    text-align: center;
+    float: left;
+    margin: 10px;
+    color: black;
+  }
+
+  a {
+    text-align: center;
+    display:table-cell; 
+    vertical-align: middle;
+}
+body {
+            background-image: url('/images/motorcycle.jpg');
+            margin: 0;
+            font-size:30px;
+            color:black;
+            
         }
 
     </style>
 </head>
 <body>
-    <div style="display:table;">
-        <a style="display:table-cell;background-color:red;text-decoration: none;padding:50px;text-align:center;" href="/Shared/Orders">Zamówienia</a>
+    <div id="zamowienia" style="display:table;">
+        <a href="/Shared/Orders">Zamówienia</a>
     </div>
-    <div style="display:table;">
-        <a style="display:table-cell;background-color:red;text-decoration: none;padding:50px;text-align:center;" href="/Shared/Cartons">Kartony</a>
+    <div id="kartony" style="display:table;">
+        <a href="/Shared/Cartons">Kartony</a>
     </div>
-    <div style="display:table;">
-        <a style="display:table-cell;background-color:red;text-decoration: none;padding:50px;text-align:center;" href="/Shared/Stats">Statystyki</a>
+    <div id="wykres"  style="display:table;">
+        <a href="/Shared/Stats">Statystyki</a>
     </div>
-    <div style="display:table;">
-        <a style="display:table-cell;background-color:red;text-decoration: none;padding:50px;text-align:center;" href="/Shared/Products">Produkty</a>
+    <div id="kartoteka" style="display:table;">
+        <a href="/Shared/Products">Produkty</a>
     </div>
-    <h1 id="hhh">test</h1>
+     
+
 </body>
 </html>
