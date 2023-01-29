@@ -34,6 +34,12 @@ namespace WarehouseManagmentWEB.Controllers
             Singleton.Instance.Token = token;
             return RedirectToPage("/Shared/MainPage");
         }
+        public IActionResult ImportZamowien()
+        {
+            Orders.ImportOrders();
+
+            return RedirectToPage("/Shared/Orders");
+        }
 
         public IActionResult MainPage()
         {
