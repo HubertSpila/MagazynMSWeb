@@ -24,6 +24,7 @@
                 }
             }
         }
+        //Wycięcie cudzysłowia
         public static string TokenWithout()
         {
             string token = Instance.Token.Remove(0, 1);

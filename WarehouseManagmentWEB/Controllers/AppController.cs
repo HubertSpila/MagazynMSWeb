@@ -11,9 +11,9 @@ namespace WarehouseManagmentWEB.Controllers
         public IActionResult Index()
         {
             return View();
-            //return View(new IndexModel());
         }
 
+        //logowanie
         [HttpPost]
         public IActionResult Index(LoginModel form)
         {
@@ -29,15 +29,12 @@ namespace WarehouseManagmentWEB.Controllers
 
             if (token == "Unauthorized")
                 return View(new IndexModel("Błędny login lub hasło."));
-
+            
+            //Zapis tokena
             Singleton.Instance.Token = token;
             return RedirectToPage("/Shared/MainPage");
         }
 
-        public IActionResult Error()
-        {
-            return View();
-        }
         public IActionResult MainPage()
         {
             return View();

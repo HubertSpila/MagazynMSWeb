@@ -24,6 +24,7 @@ namespace WarehouseManagmentWEB.Tools.Api
 
             if (response.Content == null) return string.Empty;
 
+            //Sprawdzenie odpowiedzi z API
             if(response.StatusCode == HttpStatusCode.OK)
             {
                 Singleton.Instance.Token = response.Content;

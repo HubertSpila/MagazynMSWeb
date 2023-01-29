@@ -5,6 +5,7 @@ namespace WarehouseManagmentWEB.Tools.Api
 {
     public static class Products
     {
+        //Zapytanie do API
         public static List<ProductModel>? GetProducts()
         {
             string token = Singleton.TokenWithout();

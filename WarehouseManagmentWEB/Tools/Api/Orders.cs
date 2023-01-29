@@ -5,6 +5,7 @@ namespace WarehouseManagmentWEB.Tools.Api
 {
     public static class Orders
     {
+        //Zapytanie do API
         public static List<OrderModel>? GetOrders()
         {
             string token = Singleton.TokenWithout();
