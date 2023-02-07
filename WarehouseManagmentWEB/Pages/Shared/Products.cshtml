@@ -10,6 +10,7 @@
     Layout = "_Layout_Items";
 
     var products = Products.GetProducts();
+    var cartons = Cartons.GetCartons();
 }
 
 
@@ -30,22 +31,58 @@
         }
 
         body {
-            background-image: url('/images/motorcycle.jpg');
+            background-image: url('/images/background.jpg');
+            background-size: cover;
             margin: 0;
-            font-size: 30px;
+            font-size: 20px;
             color: black;
         }
 
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100px;
+            margin: 20px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            margin: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkorange;
+        }
     </style>
 </head>
 <body>
-    @if (products != null)
-    {
-        foreach (var item in products)
-        {
-                    <li>@item.SKU @item.Nazwa_produktu @item.ID_kartonu @item.Stan_magazynowy @item.Potrzebna_ilosc</li>
 
-        }
-    }
+    <table style="width:65%">
+        <tr>
+            <th>SKU</th>
+            <th>Nazwa_produktu</th>
+            <th>ID_kartonu</th>
+
+
+        </tr>
+        <tr>
+            @if (products != null)
+            {
+                foreach (var item in products)
+                {
+                    <tr>
+                    <td>@item.SKU </td>
+                    <td>@item.Nazwa_produktu </td>
+                    <td>@item.ID_kartonu </td>
+                   </tr>
+
+                }
+            }
+
+
+
+        </tr>
+    </table>
 </body>
 </html>

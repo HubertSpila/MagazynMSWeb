@@ -10,6 +10,14 @@
     Layout = "_Layout_orders";
 
     var orders = Orders.GetOrders();
+
+    bool first = true;
+
+    string SetFirst(bool f)
+    {
+        first = f;
+        return string.Empty;
+    }
 }
 
 
@@ -30,26 +38,90 @@
         }
 
         body {
-            background-image: url('/images/motorcycle.jpg');
+            background-image: url('/images/background.jpg');
+            background-size: cover;
             margin: 0;
-            font-size: 30px;
+            font-size: 20px;
             color: black;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            height: 100%;
+            margin: 20px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkorange;
         }
 
     </style>
 </head>
 <body>
-    @if (orders != null)
-    {
-        foreach (var order in orders)
-        {
-            <li>@order.iD_zamowienia    @order.iD_kartonu   @order.czy_na_stanie</li>
 
-            @foreach (var item in order.pozycje)
+    <table>
+        <tr>
+            <th>ID_zamowienia</th>
+            <th>iD_kartonu</th>
+            <th>czy_karton_na_stanie</th>
+            <th>sku</th>
+            <th>ilosc</th>
+            <th>czy_na_stanie</th>
+        </tr>
+        @if (orders != null)
+        {
+            @foreach (var order in orders)
             {
-                <ul>@item.sku    @item.ilosc    @item.czy_na_stanie</ul>
+                @SetFirst(true);
+
+                @foreach (var item in order.pozycje)
+                {
+                    <tr>
+                        @if(@first)
+                        {
+                        <td >@order.iD_zamowienia</td>
+                        <td> @order.iD_kartonu   </td>
+                        <td> @order.czy_na_stanie</td>
+
+                            @SetFirst(false);
+                        }
+                        else
+                        {
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        }
+
+                        <td>@item.sku    </td>
+                        <td>@item.ilosc    </td>
+                        <td>@item.czy_na_stanie</td>
+                    </tr>
+                }
             }
         }
+
+    </table>
+
+
+    @* @if (orders != null)
+    {
+    foreach (var order in orders)
+    {
+    <li>@order.iD_zamowienia    @order.iD_kartonu   @order.czy_na_stanie</li>
+
+    @foreach (var item in order.pozycje)
+    {
+    <ul>@item.sku    @item.ilosc    @item.czy_na_stanie</ul>
     }
+    }
+    }*@
 </body>
 </html>

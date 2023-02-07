@@ -31,22 +31,70 @@
         }
 
         body {
-            background-image: url('/images/motorcycle.jpg');
+            background-image: url('/images/background.jpg');
+            background-size: cover;
             margin: 0;
-            font-size: 30px;
+            font-size: 20px;
             color: black;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100px;
+            margin: 20px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkorange;
         }
 
     </style>
 </head>
 <body>
-    @if (cartons != null)
-    {
-        foreach (var item in cartons)
-        {
-            <li>@item.ID_kartonu @item.Wysokosc @item.Szerokosc @item.Glebokosc @item.Stan_magazynowy @item.Potrzebna_ilosc</li>
+    <table>
+        <tr>
+            <th>ID_kartonu</th>
+            <th>Wysokosc</th>
+            <th>Szerokosc</th>
+            <th>Glebokosc</th>
+            <th>Stan_magazynowy</th>
+            <th>Potrzebna_ilosc</th>
+        </tr>
+        <tr>
+            @if (cartons != null)
+            {
+                foreach (var item in cartons)
+                {
+                <tr>
+                    <td>@item.ID_kartonu </td>
+                    <td>@item.Wysokosc </td>
+                    <td>@item.Szerokosc </td>
+                    <td>@item.Glebokosc </td>
+                    <td>@item.Stan_magazynowy </td>
+                    <td>@item.Potrzebna_ilosc</td>
+                </tr>
+                }
+            }
 
-        }
+
+        </tr>
+    </table>
+
+
+
+    @*@if (cartons != null)
+    {
+    foreach (var item in cartons)
+    {
+    <li>@item.ID_kartonu @item.Wysokosc @item.Szerokosc @item.Glebokosc @item.Stan_magazynowy @item.Potrzebna_ilosc</li>
+
     }
+    }*@
 </body>
 </html>
