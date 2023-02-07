@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WarehouseManagmentWEB.PostModels;
 using WarehouseManagmentWEB.Pages;
 using WarehouseManagmentWEB.Tools.Api;
+using RestSharp;
 
 namespace WarehouseManagmentWEB.Controllers
 {
@@ -34,6 +35,30 @@ namespace WarehouseManagmentWEB.Controllers
             Singleton.Instance.Token = token;
             return RedirectToPage("/Shared/MainPage");
         }
+        [HttpPost]
+        public IActionResult ChangeQuantity(ChangeCartonModel form)
+        {
+            Cartons.ChangeCarton(form);
+
+            return RedirectToPage("/Shared/Cartons");
+        }
+        [HttpPost]
+        public IActionResult AddCarton(AddCartonModel form)
+        {
+            Cartons.AddCarton(form);
+
+            return RedirectToPage("/Shared/Cartons");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCarton(int ID_kartonu)
+        {
+            Cartons.DeleteCarton(ID_kartonu);
+
+            return RedirectToPage("/Shared/Cartons");
+        }
+
+
         public IActionResult ImportZamowien()
         {
             Orders.ImportOrders();

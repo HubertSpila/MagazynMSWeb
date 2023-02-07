@@ -10,9 +10,9 @@
     Layout = "_Layout_Cartons";
 
     var cartons = Cartons.GetCartons();
+    //<td><input id="input_@item.ID_kartonu" type="number" /></td>
+    //<td><button onclick="f(@item.ID_kartonu)">click</button></td>
 }
-
-
 
 <html>
 <head>
@@ -55,8 +55,20 @@
         }
 
     </style>
+    <script>
+        function f(id) {
+            var labelId = "input_" + id;
+            const ilosc = document.getElementById(labelId).value;
+            document.getElementById("a").innerHTML = ilosc;
+
+
+        }
+    </script>
 </head>
 <body>
+
+
+
     <table>
         <tr>
             <th>ID_kartonu</th>
@@ -78,23 +90,53 @@
                     <td>@item.Glebokosc </td>
                     <td>@item.Stan_magazynowy </td>
                     <td>@item.Potrzebna_ilosc</td>
+                    <td>
+                            @using (Html.BeginForm("ChangeQuantity", "App", FormMethod.Post))
+                            {
+
+                            <form method="post">
+                                <input type="number" name="Id" value="@item.ID_kartonu" required>
+
+                                <input type="number" name="Ilosc" required>
+
+                                <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
+                            </form>
+
+                            }
+                    </td>
+
                 </tr>
                 }
             }
-
-
         </tr>
+
     </table>
-
-
-
-    @*@if (cartons != null)
+    <p>Dodawanie Kartonu:</p>
+    @using (Html.BeginForm("AddCarton", "App", FormMethod.Post))
     {
-    foreach (var item in cartons)
-    {
-    <li>@item.ID_kartonu @item.Wysokosc @item.Szerokosc @item.Glebokosc @item.Stan_magazynowy @item.Potrzebna_ilosc</li>
+
+        <form method="post">
+            <input type="number" name="ID_kartonu" required>
+            <input type="number" name="Wysokosc" required>
+            <input type="number" name="Szerokosc" required>
+            <input type="number" name="Glebokosc" required>
+            <input type="number" name="Stan_magazynowy" required>
+
+            <button type="submit" asp-asp-page-handler="Submit">Dodaj karton</button>
+        </form>
 
     }
-    }*@
+    <p>Usuwanie Kartonu:</p>
+    @using (Html.BeginForm("DeleteCarton", "App", FormMethod.Post))
+    {
+
+        <form method="post">
+            <input type="number" name="ID_kartonu" required>
+
+            <button type="submit" asp-asp-page-handler="Submit">Usuń karton</button>
+        </form>
+
+    }
+
 </body>
 </html>
