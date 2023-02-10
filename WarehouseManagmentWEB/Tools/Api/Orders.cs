@@ -22,22 +22,5 @@ namespace WarehouseManagmentWEB.Tools.Api
             return response;
         }
 
-        public static bool ImportOrders()
-        {
-            string token = Singleton.TokenWithout();
-
-            var client = new RestClient("https://localhost:7145/api/orders");
-            var request = new RestRequest("import", Method.Get);
-            request.AddHeader("Authorization", $"Bearer {token}");
-            var body = @"";
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-
-            var response = client.Execute(request);
-
-            if (response.StatusCode == HttpStatusCode.OK)
-                return true;
-
-            return false;
-        }
     }
 }

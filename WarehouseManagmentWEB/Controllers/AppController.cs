@@ -57,18 +57,28 @@ namespace WarehouseManagmentWEB.Controllers
 
             return RedirectToPage("/Shared/Cartons");
         }
-
-
-        public IActionResult ImportZamowien()
+      
+        [HttpPost]
+        public IActionResult AddProduct(AddProductModel form)
         {
-            Orders.ImportOrders();
+            Products.AddProduct(form);
 
-            return RedirectToPage("/Shared/Orders");
+            return RedirectToPage("/Shared/products");
         }
+
+
+
+        /* public IActionResult ImportZamowien()
+         {
+             Orders.ImportOrders();
+
+             return RedirectToPage("/Shared/Orders");
+         }*/
 
         public IActionResult MainPage()
         {
             return View();
         }
+
     }
 }

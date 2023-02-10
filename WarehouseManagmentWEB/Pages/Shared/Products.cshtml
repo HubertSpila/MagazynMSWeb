@@ -10,7 +10,17 @@
     Layout = "_Layout_Items";
 
     var products = Products.GetProducts();
+    //bool avaliable = false;
+
     var cartons = Cartons.GetCartons();
+
+    /*string Filtr(bool avaliable = false)
+        {
+        if(avaliable) products =Products.GetAvailableProducts();
+        else products = Products.GetProducts();
+
+    return string.Empty;
+    }*/
 }
 
 
@@ -55,14 +65,50 @@
             background-color: darkorange;
         }
     </style>
+
 </head>
 <body>
+
+    @using (Html.BeginForm("Wsz", "App", FormMethod.Post))
+    {
+
+        <form method="post">
+
+            <button type="submit" asp-asp-page-handler="Submit">Dodaj </button>
+        </form>
+
+    }
+    @using (Html.BeginForm("funkcja22", "App", FormMethod.Post))
+    {
+
+        <form method="post">
+
+            <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
+        </form>
+
+    }
+    <p>Dodawanie produktu:</p>
+    @using (Html.BeginForm("AddProduct", "App", FormMethod.Post))
+    {
+
+        <form method="post">
+            <input type="text" name="SKU" required>
+            <input type="text" name="Nazwa_produktu" required>
+            <input type="number" name="ID_kartonu" required>
+            <input type="number" name="Stan_magazynowy" required>
+
+            <button type="submit" asp-asp-page-handler="Submit">Dodaj produkt</button>
+        </form>
+
+    }
 
     <table style="width:65%">
         <tr>
             <th>SKU</th>
             <th>Nazwa_produktu</th>
-            <th>ID_kartonu</th>
+            <th>Wysokosc</th>
+            <th>Szerokosc</th>
+            <th>Glebokosc</th>
 
 
         </tr>
@@ -71,11 +117,13 @@
             {
                 foreach (var item in products)
                 {
-                    <tr>
+                <tr>
                     <td>@item.SKU </td>
                     <td>@item.Nazwa_produktu </td>
-                    <td>@item.ID_kartonu </td>
-                   </tr>
+                    <td>@item.Karton.Wysokosc </td>
+                    <td>@item.Karton.Szerokosc </td>
+                    <td>@item.Karton.Glebokosc </td>
+                </tr>
 
                 }
             }
