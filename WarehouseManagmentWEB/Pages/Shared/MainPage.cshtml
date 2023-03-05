@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="~/WarehouseManagmentWEB.styles.css" asp-append-version="true" />
 
     <style>
-        body{
+        body {
             background-color: #D0D9F6;
         }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -46,7 +47,6 @@
                 padding: 0;
                 display: flex;
                 flex-direction: column;
-                
             }
 
             nav li {
@@ -75,7 +75,6 @@
             text-align: center;
             text-decoration: none;
             color: #333;
-            
         }
 
             .tile:hover {
@@ -106,16 +105,17 @@
             align-items: center;
         }
 
-        .options a {
+            .options a {
                 color: #4e73df;
                 margin-right: 20px;
-        }
+            }
 
         wylogowanie {
             position: absolute;
             bottom: 0;
         }
-        img{
+
+        img {
             float: center;
             justify-content: center;
         }
@@ -126,12 +126,12 @@
 
 <header>
     <nav>
-        <img src="~/images/logo.png" alt="logo" width="120px" height="120px"/>
+        <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
-            <li><a href="#">Strona główna</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
             <li><a href="#">Ustawienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/AddCartonPage" >Dodaj Karton</a></li>
-            <li><a asp-area="" asp-page="/Shared/AddProductPage" >Dodaj Produkt</a></li>
+            <li><a asp-area="" asp-page="/Shared/AddCartonPage">Dodaj Karton</a></li>
+            <li><a asp-area="" asp-page="/Shared/AddProductPage">Dodaj Produkt</a></li>
             <li><button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button></li>
         </ul>
     </nav>
@@ -148,7 +148,7 @@
         <a class="tile" asp-area="" asp-page="/Shared/Orders">
             <h2>Zamówienia</h2>
         </a>
-        <a  class="tile" asp-area="" asp-page="/Shared/Cartons">
+        <a class="tile" asp-area="" asp-page="/Shared/Cartons">
             <h2>Kartony</h2>
         </a>
         <a class="tile" asp-area="" asp-page="/Shared/Stats">

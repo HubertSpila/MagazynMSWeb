@@ -111,14 +111,8 @@
                 margin-right: 20px;
         }
 
-        wylogowanie {
-            position: absolute;
-            bottom: 0;
-        }
-        img{
-            float: center;
-            justify-content: center;
-        }
+      
+       
     </style>
 </head>
 
@@ -128,7 +122,7 @@
     <nav>
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px"/>
         <ul>
-            <li><a href="#">Strona główna</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
             <li><a href="#">Ustawienia</a></li>
             <li><a asp-area="" asp-page="/Shared/AddCartonPage" >Dodaj Karton</a></li>
             <li><a asp-area="" asp-page="/Shared/AddProductPage" >Dodaj Produkt</a></li>

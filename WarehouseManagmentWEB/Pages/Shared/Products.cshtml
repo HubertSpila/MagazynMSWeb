@@ -1,13 +1,10 @@
 ﻿@page
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@using WarehouseManagmentWEB.Controllers
-@using WarehouseManagmentWEB.Tools
 @using WarehouseManagmentWEB.Tools.Api;
 
 @model WarehouseManagmentWEB.Pages.Shared.ProductsModel
 @{
     ViewBag.Title = "MainPage";
-    Layout = "_Layout_Items";
+
 
     var products = Products.GetProducts();
     //bool avaliable = false;
@@ -23,114 +20,200 @@
     }*/
 }
 
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>MotorcycleScreens Menager</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - WarehouseManagmentWEB</title>*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WarehouseManagmentWEB.styles.css" asp-append-version="true" />
 
     <style>
-        a {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        li {
-            padding: 10px;
-        }
-
         body {
             background-color: #D0D9F6;
-            background-size: cover;
-            margin: 0;
-            font-size: 20px;
-            color: black;
         }
 
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #4e73df;
+            color: #fff;
+        }
+
+        nav {
+            background-color: #4e73df;
+            color: #fff;
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+            padding: 30px;
+        }
+
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            nav li {
+                margin-bottom: 20px;
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+
+        .tiles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 50px;
+        }
+
+        .tile {
+            background-color: #eee;
+            width: calc(50% - 20px);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+            .tile:hover {
+                background-color: #ccc;
+            }
+
+            .tile h2 {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #eee;
+            background-color: #A4B7EF;
+        }
+
+        .logout {
+            margin-right: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+            .options a {
+                color: #4e73df;
+                margin-right: 20px;
+            }
+
         table {
-            font-family: arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             border-collapse: collapse;
-            width: 100px;
-            margin: 20px;
+            width: 100%;
+            margin: 15px 0;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
         td, th {
-            border: 1px solid #4E73DF;
+            border: 1px solid #ddd;
             text-align: center;
-            margin: 20px;
+            padding: 8px;
         }
 
         tr:nth-child(even) {
-            background-color: #839DE9;
+            background-color: #f2f2f2;
         }
+
+        th {
+            background-color: #4E73DF;
+            color: #fff;
+        }
+
+        #textField {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 5px;
+        }
+
     </style>
-
 </head>
-<body>
-    @*
-    @using (Html.BeginForm("Wsz", "App", FormMethod.Post))
-    {
 
-        <form method="post">
+<meta charset="UTF-8">
 
-            <button type="submit" asp-asp-page-handler="Submit">Dodaj </button>
-        </form>
+<header>
+    <nav>
+        <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
+        <ul>
+            <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
+            <li><a href="#">Ustawienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/AddCartonPage">Dodaj Karton</a></li>
+            <li><a asp-area="" asp-page="/Shared/AddProductPage">Dodaj Produkt</a></li>
+            <li><button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button></li>
+        </ul>
+    </nav>
+    <div>
+    </div>
+</header>
 
-    }
-    @using (Html.BeginForm("funkcja22", "App", FormMethod.Post))
-    {
-
-        <form method="post">
-
-            <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
-        </form>
-
-    }
-    <p>Dodawanie produktu:</p>
-    @using (Html.BeginForm("AddProduct", "App", FormMethod.Post))
-    {
-
-        <form method="post">
-            <input type="text" name="SKU" required>
-            <input type="text" name="Nazwa_produktu" required>
-            <input type="number" name="ID_kartonu" required>
-            <input type="number" name="Stan_magazynowy" required>
-
-            <button type="submit" asp-asp-page-handler="Submit">Dodaj produkt</button>
-        </form>
-
-    }
-*@
-    <table style="width:65%">
-        <tr>
-            <th>SKU</th>
-            <th>Nazwa_produktu</th>
-            <th>Wysokosc</th>
-            <th>Szerokosc</th>
-            <th>Glebokosc</th>
+<!-- Treść strony -->
 
 
-        </tr>
-        <tr>
-            @if (products != null)
+<table style="width:65%">
+    <tr>
+        <th>SKU</th>
+        <th>Nazwa_produktu</th>
+        <th>Wysokosc</th>
+        <th>Szerokosc</th>
+        <th>Glebokosc</th>
+
+
+    </tr>
+    <tr>
+        @if (products != null)
+        {
+            foreach (var item in products)
             {
-                foreach (var item in products)
-                {
-                <tr>
-                    <td>@item.SKU </td>
-                    <td>@item.Nazwa_produktu </td>
-                    <td>@item.Karton.Wysokosc </td>
-                    <td>@item.Karton.Szerokosc </td>
-                    <td>@item.Karton.Glebokosc </td>
-                </tr>
+            <tr>
+                <td>@item.SKU </td>
+                <td>@item.Nazwa_produktu </td>
+                <td>@item.Karton.Wysokosc </td>
+                <td>@item.Karton.Szerokosc </td>
+                <td>@item.Karton.Glebokosc </td>
+            </tr>
 
-                }
             }
+        }
 
 
 
-        </tr>
-    </table>
-</body>
+    </tr>
+</table>
+
+
+<!-- Stopka strony -->
+<footer>
+    <p>Strona wykonana przy użyciu technologii Razor Pages</p>
+</footer>
+
 </html>
