@@ -4,58 +4,52 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WarehouseManagmentWEB</title>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-    @*<link rel="stylesheet" href="~/WarehouseManagmentWEB.styles.css" asp-append-version="true" />*@
+   
     <style>
         #top {
-            background-color: darkorange;
             font-family: Arial;
             font-size: large;
-           
         }
 
         #naglowek {
             font-family: Arial;
             font-size: 35px;
-            padding:10px;
-            color:black;
+            padding: 10px;
+            color: black;
         }
 
-            a:link {
-                text-decoration: none;
-            }
-
-            a:visited {
-                text-decoration: none;
-            }
-
-            a:hover {
-                text-decoration: none;
-            }
-
-            a:active {
-                text-decoration: none;
-            }
-
-        #wylogowanie{
-            float:right;
-           
+        .container {
+            padding: 16px;
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            justify-content: center;
         }
+        .top_text {
+            padding: 16px;
+            width: 700px;
+            height: 100px;
+            margin: auto;
+        }
+        #main_title{
+          text-align:center;
+          font-family: consolas;
+          font-size: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
 
     </style>
 
 </head>
 <body>
     <header id="top">
-        <div class="container">
-            <button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button>
-            <a id="naglowek" class="navbar-brand" asp-area="" asp-page="/Shared/MainPage">MotorcycleScreens Menager - Statystyki</a>
-            
-            
+        <div class="top_text">
+
+            <a id="main_title">MotorcycleScreens Menager</a>
         </div>
-
-
 
     </header>
     <div class="container">

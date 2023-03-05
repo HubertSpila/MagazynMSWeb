@@ -1,0 +1,121 @@
+﻿@page
+@*@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using WarehouseManagmentWEB.Controllers
+@using WarehouseManagmentWEB.Tools
+@using WarehouseManagmentWEB.Tools.Api;*@
+
+@*@model WarehouseManagmentWEB.Pages.Shared.MainPageModel
+@{
+    ViewBag.Title = "MainPage";
+    //Layout = "_Layout_MainPage";
+
+}*@
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WarehouseManagmentWEB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WarehouseManagmentWEB.styles.css" asp-append-version="true" />
+    <style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #333;
+        color: #fff;
+    }
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    nav li {
+        margin-right: 20px;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .tiles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 50px;
+    }
+    .tile {
+        background-color: #eee;
+        width: calc(50% - 20px);
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+    }
+    .tile:hover {
+        background-color: #ccc;
+    }
+    .tile h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        background-color: #eee;
+    }
+    pb-3{
+        width: 100%;
+    }
+</style>
+</head>
+
+    <meta charset="UTF-8">
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="#">Magazyn</a></li>
+            <li><a href="#">Zamówienia</a></li>
+            <li><a href="#">Kartony</a></li>
+            <li><a href="#">Statystyki</a></li>
+        </ul>
+    </nav>
+    <div>
+        <button class="settings">Ustawienia</button>
+        <a href="#">Wyloguj</a>
+    </div>
+</header>
+
+<!-- Treść strony -->
+<main>
+    <div class="tiles">
+        <a href="#" class="tile">
+            <h2>Produkty</h2>
+        </a>
+        <a href="#" class="tile">
+            <h2>Zamówienia</h2>
+        </a>
+        <a href="#" class="tile">
+            <h2>Kartony</h2>
+        </a>
+        <a href="#" class="tile">
+            <h2>Statystyki</h2>
+        </a>
+    </div>
+</main>
+
+<!-- Stopka strony -->
+<footer>
+    <p>Strona wykonana przy użyciu technologii Razor Pages</p>
+</footer>
+
+</html>

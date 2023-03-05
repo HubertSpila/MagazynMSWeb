@@ -1,43 +1,152 @@
 ﻿@page
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@using WarehouseManagmentWEB.Controllers
-@using WarehouseManagmentWEB.Tools
-@using WarehouseManagmentWEB.Tools.Api;
-
-@model WarehouseManagmentWEB.Pages.Shared.StatsModel
+@model IndexModel
 @{
-    ViewBag.Title = "MainPage";
-    Layout = "_Layout_Stats";
-
+    ViewData["Title"] = "Warehouse Management";
 }
 
-
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - WarehouseManagmentWEB</title>*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WarehouseManagmentWEB.styles.css" asp-append-version="true" />
+
     <style>
-        a {
+        body{
+            background-color: #D0D9F6;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #4e73df;
+            color: #fff;
+        }
+
+        nav {
+            background-color: #4e73df;
+            color: #fff;
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+            padding: 30px;
+        }
+
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                
+            }
+
+            nav li {
+                margin-bottom: 20px;
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+
+        .tiles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 50px;
+        }
+
+        .tile {
+            background-color: #eee;
+            width: calc(50% - 20px);
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: center;
-            display: table-cell;
-            vertical-align: middle;
+            text-decoration: none;
+            color: #333;
+            
         }
 
-        li {
-            padding: 10px;
+            .tile:hover {
+                background-color: #ccc;
+            }
+
+            .tile h2 {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #eee;
+            background-color: #A4B7EF;
         }
 
-        body {
-            background-image: url('/images/background.jpg');
-            background-size: cover;
-            margin: 0;
-            font-size: 30px;
-            color: black;
+        .logout {
+            margin-right: 20px;
         }
 
+        .options {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .options a {
+                color: #4e73df;
+                margin-right: 20px;
+        }
+
+        wylogowanie {
+            position: absolute;
+            bottom: 0;
+        }
+        img{
+            float: center;
+            justify-content: center;
+        }
     </style>
-    <title>MotorcycleScreens Menager</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
-<body>
-    <li>statystyki</li>
-</body>
+
+<meta charset="UTF-8">
+
+<header>
+    <nav>
+        <img src="~/images/logo.png" alt="logo" width="120px" height="120px"/>
+        <ul>
+            <li><a href="#">Strona główna</a></li>
+            <li><a href="#">Ustawienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/AddCartonPage" >Dodaj Karton</a></li>
+            <li><a asp-area="" asp-page="/Shared/AddProductPage" >Dodaj Produkt</a></li>
+            <li><button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button></li>
+        </ul>
+    </nav>
+    <div>
+    </div>
+</header>
+
+<!-- Treść strony -->
+<main>
+    <h2>statystyki</h2>
+</main>
+
+<!-- Stopka strony -->
+<footer>
+    <p>Strona wykonana przy użyciu technologii Razor Pages</p>
+</footer>
+
 </html>
