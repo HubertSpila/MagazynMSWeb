@@ -6,10 +6,10 @@
     ViewBag.Title = "MainPage";
 
 
-    var products = Products.GetProducts();
+    //var products = Products.GetProducts();
     //bool avaliable = false;
 
-    var cartons = Cartons.GetCartons();
+    //var cartons = Cartons.GetCartons();
 
     /*string Filtr(bool avaliable = false)
         {
@@ -181,18 +181,18 @@
 
 <table style="width:65%">
     <tr>
-        <th>SKU</th>
-        <th>Nazwa_produktu</th>
-        <th>Wysokosc</th>
-        <th>Szerokosc</th>
-        <th>Glebokosc</th>
+        <th><a asp-controller="Sort" asp-action="SortProducts1">SKU</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts2">Nazwa_produktu</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts3">Wysokosc</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts4">Szerokosc</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts5">Glebokosc</a></th>
 
 
     </tr>
     <tr>
-        @if (products != null)
+        @if (Model != null && Model.ProductsList != null)
         {
-            foreach (var item in products)
+            foreach (var item in Model.ProductsList)
             {
             <tr>
                 <td>@item.SKU </td>

@@ -80,5 +80,7 @@ namespace WarehouseManagmentWEB.Controllers
             return View();
         }
 
+
+
     }
 }

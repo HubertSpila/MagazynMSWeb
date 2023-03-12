@@ -9,7 +9,7 @@
     ViewBag.Title = "Warehouse Management";
 
 
-    var orders = Orders.GetOrders();
+    
 
     bool first = true;
 
@@ -215,16 +215,17 @@
 <body>
     <table>
         <tr>
-            <th>ID_zamowienia</th>
-            <th>iD_kartonu</th>
-            <th>czy_karton_na_stanie</th>
-            <th>sku</th>
-            <th>ilosc</th>
-            <th>czy_na_stanie</th>
+            <th><a asp-controller="Sort" asp-action="SortOrders1">ID_zamowienia</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders2">Karton</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders3">Karton2</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders4">czy_karton_na_stanie</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders5">sku</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders6">ilosc</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders7">czy_na_stanie</a></th>
         </tr>
-        @if (orders != null)
+        @if (Model != null && Model.OrdersList != null)
         {
-            @foreach (var order in orders)
+            @foreach (var order in Model.OrdersList)
             {
                 @SetFirst(true)
                 ;
@@ -235,7 +236,8 @@
                         @if (@first)
                         {
                             <td>@order.iD_zamowienia</td>
-                            <td> @order.iD_kartonu   </td>
+                            <td> @order.ZwrocKarton1()</td>
+                            <td> @order.ZwrocKarton2()</td>
                             <td> @order.czy_na_stanie</td>
 
                             @SetFirst(false)
@@ -243,6 +245,7 @@
                         }
                         else
                         {
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

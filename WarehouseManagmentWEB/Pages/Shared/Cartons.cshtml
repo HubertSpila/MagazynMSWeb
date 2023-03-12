@@ -9,7 +9,10 @@
     ViewBag.Title = "Warehouse Management";
 
 
-    var cartons = Cartons.GetCartons();
+    //var cartons = Cartons.GetCartons();
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
 
@@ -17,7 +20,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WarehouseManagmentWEB.styles.css" asp-append-version="true" />
-
+    <link rel="stylesheet" type="text/css" href="styl.css" />
 }
 
 <html>
@@ -26,6 +29,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+    <link rel="stylesheet" type="text/css" href="styl.css" />
+    
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
     <style>
         body {
             background-color: #D0D9F6;
@@ -181,48 +193,52 @@
 
 
 
-    <table>
-        <tr>
-            <th>ID_kartonu</th>
-            <th>Wysokosc</th>
-            <th>Szerokosc</th>
-            <th>Glebokosc</th>
-            <th>Stan_magazynowy</th>
-            <th>Potrzebna_ilosc</th>
-        </tr>
-        <tr>
-            @if (cartons != null)
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th><a asp-controller="Sort" asp-action="SortCartons1">ID_kartonu</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons2">Wysokosc</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons3">Szerokosc</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons4">Glebokosc</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons5">Stan_magazynowy</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons6">Potrzebna_ilosc</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.CartonsList != null)
             {
-                foreach (var item in cartons)
+                foreach (var item in Model.CartonsList)
                 {
-                <tr>
-                    <td>@item.ID_kartonu </td>
-                    <td>@item.Wysokosc </td>
-                    <td>@item.Szerokosc </td>
-                    <td>@item.Glebokosc </td>
-                    <td>@item.Stan_magazynowy </td>
-                    <td>@item.Potrzebna_ilosc</td>
-                    <td>
+                    <tr>
+                        <td>@item.ID_kartonu </td>
+                        <td>@item.Wysokosc </td>
+                        <td>@item.Szerokosc </td>
+                        <td>@item.Glebokosc </td>
+                        <td>@item.Stan_magazynowy </td>
+                        <td>@item.Potrzebna_ilosc</td>
+                        <td>
                             @using (Html.BeginForm("ChangeQuantity", "App", FormMethod.Post))
                             {
 
-                            <form method="post">
-                                <input style="visibility: collapse; width: 1px" type="number" name="Id" value="@item.ID_kartonu" required>
+                                <form method="post">
+                                    <input style="visibility: collapse; width: 1px" type="number" name="Id" value="@item.ID_kartonu" required>
 
-                                <input id="textField" type="number" name="Ilosc" required>
+                                    <input id="textField" type="number" name="Ilosc" required>
 
-                                <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
-                            </form>
+                                    <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
+                                </form>
 
                             }
-                    </td>
+                        </td>
 
-                </tr>
+                    </tr>
                 }
             }
-        </tr>
-
+        </tbody>
     </table>
+
+    
+
 
     <footer>
         <p>Strona wykonana przy użyciu technologii Razor Pages</p>

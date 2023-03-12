@@ -21,6 +21,20 @@ namespace WarehouseManagmentWEB.Tools.Api
 
             return response;
         }
+        public static CartonModel? GetCarton(int id)
+        {
+            string token = Singleton.TokenWithout();
+
+            var client = new RestClient("https://localhost:7145/api/");
+            var request = new RestRequest($"cartons/{id}", Method.Get);
+            request.AddHeader("Authorization", $"Bearer {token}");
+            var body = @"";
+            request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+            CartonModel? response = client.Execute<CartonModel>(request).Data;
+
+            return response;
+        }
 
         public static bool ChangeCarton(ChangeCartonModel form)
         {

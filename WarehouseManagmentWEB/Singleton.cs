@@ -5,6 +5,16 @@
         private static Singleton instance = null;
         private static readonly object padlock = new object();
         public string Token;
+
+        //Sortowanie
+        public int CartonSortType;
+        public int CartonSortTypeLast;
+
+        public int ProductSortType;
+        public int ProductSortTypeLast;
+
+        public int OrderSortType;
+        public int OrderSortTypeLast;
         Singleton()
         {
             Token = "token";
