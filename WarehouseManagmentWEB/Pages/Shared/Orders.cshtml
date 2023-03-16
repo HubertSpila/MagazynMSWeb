@@ -202,12 +202,16 @@
     <nav>
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
+           <li></li>
             <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
-            <li><a href="#">Ustawienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/AddCartonPage">Dodaj Karton</a></li>
-            <li><a asp-area="" asp-page="/Shared/AddProductPage">Dodaj Produkt</a></li>
-            <li><button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button></li>
-        </ul>
+            <li><a asp-area="" asp-page="/Shared/Products">Produkty</a></li>
+            <li><a asp-area="" asp-page="/Shared/Orders">Zamówienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/Cartons">Kartony</a></li>
+            <li><a asp-area="" asp-page="/Shared/Stats">Statystyki</a></li>
+            <li><a asp-area="" asp-page="/Shared/Settings">Zarządzaj</a></li>
+            <li></li>
+            <li></li>
+            <li><a asp-area="" asp-page="/Shared/Index">Wyloguj</a></li>
     </nav>
     <div>
     </div>

@@ -26,6 +26,7 @@
             padding: 20px;
             background-color: #4e73df;
             color: #fff;
+            
         }
 
         nav {
@@ -39,6 +40,9 @@
             overflow-x: hidden;
             padding-top: 20px;
             padding: 30px;
+            
+            
+
         }
 
             nav ul {
@@ -93,6 +97,7 @@
             padding: 20px;
             background-color: #eee;
             background-color: #A4B7EF;
+            
         }
 
         .logout {
@@ -103,6 +108,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            
         }
 
             .options a {
@@ -110,19 +116,10 @@
                 margin-right: 20px;
             }
 
-        button {
-            position: fixed;
+        wylogowanie {
+            position: absolute;
             bottom: 0;
-            margin: 15px;
-            color: #4e73df;
         }
-
-            button:hover {
-                background-color: #2b6cb0;
-                color: white;
-            }
-
-
 
         img {
             float: center;
@@ -147,28 +144,22 @@
             <li></li>
             <li></li>
             <li><a asp-area="" asp-page="/Shared/Index">Wyloguj</a></li>
-            @*<button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button>*@
-
         </ul>
-    </nav>    <div>
+    </nav>
+    <div>
     </div>
 </header>
 
 <!-- Treść strony -->
 <main>
     <div class="tiles">
-        <a class="tile" asp-area="" asp-page="/Shared/Products">
-            <h2>Produkty</h2>
+        <a class="tile" asp-area="" asp-page="/Shared/AddCartonPage">
+            <h2>Dodaj Karton</h2>
         </a>
-        <a class="tile" asp-area="" asp-page="/Shared/Orders">
-            <h2>Zamówienia</h2>
+        <a class="tile" asp-area="" asp-page="/Shared/AddProductPage">
+            <h2>Dodaj Produkt</h2>
         </a>
-        <a class="tile" asp-area="" asp-page="/Shared/Cartons">
-            <h2>Kartony</h2>
-        </a>
-        <a class="tile" asp-area="" asp-page="/Shared/Stats">
-            <h2>Statystyki</h2>
-        </a>
+       
     </div>
 </main>
 
