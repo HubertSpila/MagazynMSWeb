@@ -43,6 +43,13 @@ namespace WarehouseManagmentWEB.Controllers
             return RedirectToPage("/Shared/Cartons");
         }
         [HttpPost]
+        public IActionResult ChangeQuantityProd(ChangeProductModel form)
+        {
+            Products.ChangeProduct(form);
+
+            return RedirectToPage("/Shared/AddProductPage");
+        }
+        [HttpPost]
         public IActionResult AddCarton(AddCartonModel form)
         {
             Cartons.AddCarton(form);
@@ -65,22 +72,25 @@ namespace WarehouseManagmentWEB.Controllers
 
             return RedirectToPage("/Shared/products");
         }
-
-
-
-        /* public IActionResult ImportZamowien()
-         {
-             Orders.ImportOrders();
-
-             return RedirectToPage("/Shared/Orders");
-         }*/
+        [HttpPost]
+        public IActionResult EntryCarton(UpdateCartonOrderModel form)
+        {
+            Orders.UpdateCarton(form);
+            
+            return RedirectToPage("/Shared/Orders");
+        }
 
         public IActionResult MainPage()
         {
             return View();
         }
 
+        public IActionResult OrdersImport()
+        {
+            Orders.ImportOrders();
 
+            return RedirectToPage("/Shared/Orders");
+        }
 
     }
 }

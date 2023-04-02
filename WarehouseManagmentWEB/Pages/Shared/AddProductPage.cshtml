@@ -235,13 +235,14 @@
 
     }
 
-    <table style="width:65%">
+    <table style="width:80%">
         <tr>
             <th>SKU</th>
             <th>Nazwa_produktu</th>
             <th>Wysokosc</th>
             <th>Szerokosc</th>
             <th>Glebokosc</th>
+            <th>Stan magazynowy</th>
 
 
         </tr>
@@ -256,8 +257,22 @@
                     <td>@item.Karton.Wysokosc </td>
                     <td>@item.Karton.Szerokosc </td>
                     <td>@item.Karton.Glebokosc </td>
+                    <td>@item.Stan_magazynowy </td>
                 </tr>
+                <td>
+                        @using (Html.BeginForm("ChangeQuantityProd", "App", FormMethod.Post))
+                        {
 
+                        <form method="post">
+                            <input style="visibility: collapse;" type="text" name="SKU" value="@item.SKU" required>
+
+                            <input id="textField" type="number" name="Ilosc" required>
+
+                            <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
+                        </form>
+
+                        }
+                </td>
                 }
             }
 

@@ -8,8 +8,8 @@
 @{
     ViewBag.Title = "Warehouse Management";
 
+    var cartons = Cartons.GetCartons();
 
-    
 
     bool first = true;
 
@@ -199,11 +199,11 @@
     </script>
 </head>
 <header>
-    <button>Pobierz zamówienia</button>
+    <p><a asp-controller="App" asp-action="OrdersImport">Pobierz zamówienia</a></p>
     <nav>
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
-           <li></li>
+            <li></li>
             <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
             <li><a asp-area="" asp-page="/Shared/Products">Produkty</a></li>
             <li><a asp-area="" asp-page="/Shared/Orders">Zamówienia</a></li>
@@ -241,7 +241,31 @@
                         @if (@first)
                         {
                             <td>@order.iD_zamowienia</td>
-                            <td> @order.ZwrocKarton1()</td>
+                            <td>
+                                @using (Html.BeginForm("EntryCarton", "App", FormMethod.Post))
+                                {
+                                    <form method="post">
+                                        <input style="visibility: collapse;" type="text" name="id_zamowienia" value="@item.iD_zamowienia" width="0" height="0" required>
+
+                                        <select id="selectField" name="id_kartonu" required>
+                                            <option value=0 selected>Wybierz karton</option>
+                                            @foreach (var carton in cartons)
+                                            {
+                                                @if (@carton.ID_kartonu == order.iD_kartonu)
+                                                {
+                                                    <option value=@carton.ID_kartonu selected>@carton.Wysokosc x @carton.Szerokosc x @carton.Glebokosc</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value=@carton.ID_kartonu>@carton.Wysokosc x @carton.Szerokosc x @carton.Glebokosc</option>
+                                                }
+                                            }
+                                        </select>
+
+                                        <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
+                                    </form>
+                                }
+                            </td>
                             <td> @order.ZwrocKarton2()</td>
                             <td> @order.czy_na_stanie</td>
 

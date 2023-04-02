@@ -62,6 +62,21 @@ namespace WarehouseManagmentWEB.Controllers
             Singleton.Instance.ProductSortType = 5;
             return RedirectToPage("/Shared/Products");
         }
+        public IActionResult SortProducts6()
+        {
+            Singleton.Instance.ProductSortType = 6;
+            return RedirectToPage("/Shared/Products");
+        }
+        public IActionResult SortProducts7()
+        {
+            Singleton.Instance.ProductSortType = 7;
+            return RedirectToPage("/Shared/Products");
+        }
+        public IActionResult AvaliableProd()
+        {
+            Singleton.Instance.OnlyAvaliableProd = !Singleton.Instance.OnlyAvaliableProd;
+            return RedirectToPage("/Shared/Products");
+        }
 
         public IActionResult SortOrders1()
         {

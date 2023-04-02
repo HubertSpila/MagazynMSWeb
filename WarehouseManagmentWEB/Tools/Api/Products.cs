@@ -67,5 +67,25 @@ namespace WarehouseManagmentWEB.Tools.Api
 
             return response.StatusCode == System.Net.HttpStatusCode.OK;
         }
+        public static bool ChangeProduct(ChangeProductModel form)
+        {
+            string token = Singleton.TokenWithout();
+
+            var client = new RestClient("https://localhost:7145/api/products/");
+            var request = new RestRequest("update", Method.Put);
+            request.AddHeader("Authorization", $"Bearer {token}");
+            request.AddHeader("Content-Type", "application/json");
+            var body = @"{
+" + "\n" +
+            $@"    ""sku"": ""{form.SKU}"",
+" + "\n" +
+            $@"    ""ilosc"" : {form.Ilosc}
+" + "\n" +
+            @"}";
+            request.AddParameter("application/json", body, ParameterType.RequestBody);
+            var response = client.Execute(request);
+
+            return response.StatusCode == System.Net.HttpStatusCode.OK;
+        }
     }
 }

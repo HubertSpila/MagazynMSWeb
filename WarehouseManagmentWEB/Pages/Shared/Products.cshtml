@@ -162,6 +162,7 @@
 <meta charset="UTF-8">
 
 <header>
+    <p><a asp-controller="Sort" asp-action="AvaliableProd">Stan magazynowy</a></p>
     <nav>
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
@@ -191,6 +192,8 @@
         <th><a asp-controller="Sort" asp-action="SortProducts3">Wysokosc</a></th>
         <th><a asp-controller="Sort" asp-action="SortProducts4">Szerokosc</a></th>
         <th><a asp-controller="Sort" asp-action="SortProducts5">Glebokosc</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts6">Stan magazynowy</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts7">Potrzebna ilość</a></th>
 
 
     </tr>
@@ -205,6 +208,8 @@
                 <td>@item.Karton.Wysokosc </td>
                 <td>@item.Karton.Szerokosc </td>
                 <td>@item.Karton.Glebokosc </td>
+                <td>@item.Stan_magazynowy </td>
+                <td>@item.Potrzebna_ilosc </td>
             </tr>
 
             }

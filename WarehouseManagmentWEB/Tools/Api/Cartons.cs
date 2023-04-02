@@ -7,7 +7,7 @@ namespace WarehouseManagmentWEB.Tools.Api
     public static class Cartons
     {
         //Zapytanie do API
-        public static List<CartonModel>? GetCartons()
+        public static List<CartonModel> GetCartons()
         {
             string token = Singleton.TokenWithout();
 

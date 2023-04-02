@@ -26,12 +26,12 @@ namespace WarehouseManagmentWEB.Pages.Shared
             {
                 if(lastClicked == 1)
                 {
-                    CartonsList = cartons?.OrderByDescending(x => x.ID_kartonu).ToList();
+                    CartonsList = cartons?.OrderBy(x => x.ID_kartonu).ToList();
                     lastClicked = 0;
                 }
                 else
                 {
-                    CartonsList = cartons?.OrderBy(x => x.ID_kartonu).ToList();
+                    CartonsList = cartons?.OrderByDescending(x => x.ID_kartonu).ToList();
                     lastClicked = 1;
                 }
             }
@@ -40,12 +40,12 @@ namespace WarehouseManagmentWEB.Pages.Shared
             {
                 if (lastClicked == 2)
                 {
-                    CartonsList = cartons?.OrderByDescending(x => x.Wysokosc).ToList();
+                    CartonsList = cartons?.OrderBy(x => x.Wysokosc).ToList();
                     lastClicked = 0;
                 }
                 else
                 {
-                    CartonsList = cartons?.OrderBy(x => x.Wysokosc).ToList();
+                    CartonsList = cartons?.OrderByDescending(x => x.Wysokosc).ToList();
                     lastClicked = 2;
                 }
             }
@@ -54,12 +54,12 @@ namespace WarehouseManagmentWEB.Pages.Shared
             {
                 if (lastClicked == 3)
                 {
-                    CartonsList = cartons?.OrderByDescending(x => x.Szerokosc).ToList();
+                    CartonsList = cartons?.OrderBy(x => x.Szerokosc).ToList();
                     lastClicked = 0;
                 }
                 else
                 {
-                    CartonsList = cartons?.OrderBy(x => x.Szerokosc).ToList();
+                    CartonsList = cartons?.OrderByDescending(x => x.Szerokosc).ToList();
                     lastClicked = 3;
                 }
             }
@@ -68,12 +68,12 @@ namespace WarehouseManagmentWEB.Pages.Shared
             {
                 if (lastClicked == 4)
                 {
-                    CartonsList = cartons?.OrderByDescending(x => x.Glebokosc).ToList();
+                    CartonsList = cartons?.OrderBy(x => x.Glebokosc).ToList();
                     lastClicked = 0;
                 }
                 else
                 {
-                    CartonsList = cartons?.OrderBy(x => x.Glebokosc).ToList();
+                    CartonsList = cartons?.OrderByDescending(x => x.Glebokosc).ToList();
                     lastClicked = 4;
                 }
             }
@@ -82,12 +82,12 @@ namespace WarehouseManagmentWEB.Pages.Shared
             {
                 if (lastClicked == 5)
                 {
-                    CartonsList = cartons?.OrderByDescending(x => x.Stan_magazynowy).ToList();
+                    CartonsList = cartons?.OrderBy(x => x.Stan_magazynowy).ToList();
                     lastClicked = 0;
                 }
                 else
                 {
-                    CartonsList = cartons?.OrderBy(x => x.Stan_magazynowy).ToList();
+                    CartonsList = cartons?.OrderByDescending(x => x.Stan_magazynowy).ToList();
                     lastClicked = 5;
                 }
             }
@@ -96,12 +96,12 @@ namespace WarehouseManagmentWEB.Pages.Shared
             {
                 if (lastClicked == 6)
                 {
-                    CartonsList = cartons?.OrderByDescending(x => x.Potrzebna_ilosc).ToList();
+                    CartonsList = cartons?.OrderBy(x => x.Potrzebna_ilosc).ToList();
                     lastClicked = 0;
                 }
                 else
                 {
-                    CartonsList = cartons?.OrderBy(x => x.Potrzebna_ilosc).ToList();
+                    CartonsList = cartons?.OrderByDescending(x => x.Potrzebna_ilosc).ToList();
                     lastClicked = 6;
                 }
             }
