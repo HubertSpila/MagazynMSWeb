@@ -9,17 +9,14 @@
         //Sortowanie
         public int CartonSortType;
         public int CartonSortTypeLast;
-        public bool CartonSortDesc;
 
         public int ProductSortType;
         public int ProductSortTypeLast;
-        public bool ProductSortDesc;
 
         public bool OnlyAvaliableProd;
 
         public int OrderSortType;
         public int OrderSortTypeLast;
-        public bool OrderSortDesc;
         Singleton()
         {
             Token = "token";
@@ -35,9 +32,6 @@
                     {
                         instance = new Singleton();
                         instance.OnlyAvaliableProd = false;
-                        instance.CartonSortDesc = false;
-                        instance.ProductSortDesc = false;
-                        instance.OrderSortDesc = false;
                     }
                     return instance;
                 }

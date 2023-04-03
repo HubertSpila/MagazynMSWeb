@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WarehouseManagmentWEB.PostModels;
 using WarehouseManagmentWEB.Pages;
 using WarehouseManagmentWEB.Tools.Api;
-using RestSharp;
 
 namespace WarehouseManagmentWEB.Controllers
 {
@@ -14,7 +12,6 @@ namespace WarehouseManagmentWEB.Controllers
             return View();
         }
 
-        //logowanie
         [HttpPost]
         public IActionResult Index(LoginModel form)
         {
@@ -35,6 +32,15 @@ namespace WarehouseManagmentWEB.Controllers
             Singleton.Instance.Token = token;
             return RedirectToPage("/Shared/MainPage");
         }
+
+        public IActionResult OrdersImport()
+        {
+            Orders.ImportOrders();
+
+            return RedirectToPage("/Shared/Orders");
+        }
+
+        #region Cartons Managment
         [HttpPost]
         public IActionResult ChangeQuantity(ChangeCartonModel form)
         {
@@ -42,13 +48,15 @@ namespace WarehouseManagmentWEB.Controllers
 
             return RedirectToPage("/Shared/Cartons");
         }
-        [HttpPost]
-        public IActionResult ChangeQuantityProd(ChangeProductModel form)
-        {
-            Products.ChangeProduct(form);
 
-            return RedirectToPage("/Shared/AddProductPage");
+        [HttpPost]
+        public IActionResult EntryCarton(UpdateCartonOrderModel form)
+        {
+            Orders.UpdateCarton(form);
+
+            return RedirectToPage("/Shared/Orders");
         }
+
         [HttpPost]
         public IActionResult AddCarton(AddCartonModel form)
         {
@@ -64,7 +72,17 @@ namespace WarehouseManagmentWEB.Controllers
 
             return RedirectToPage("/Shared/Cartons");
         }
-      
+        #endregion
+
+        #region Product Managment
+        [HttpPost]
+        public IActionResult ChangeQuantityProd(ChangeProductModel form)
+        {
+            Products.ChangeProduct(form);
+
+            return RedirectToPage("/Shared/AddProductPage");
+        }
+
         [HttpPost]
         public IActionResult AddProduct(AddProductModel form)
         {
@@ -72,25 +90,6 @@ namespace WarehouseManagmentWEB.Controllers
 
             return RedirectToPage("/Shared/products");
         }
-        [HttpPost]
-        public IActionResult EntryCarton(UpdateCartonOrderModel form)
-        {
-            Orders.UpdateCarton(form);
-            
-            return RedirectToPage("/Shared/Orders");
-        }
-
-        public IActionResult MainPage()
-        {
-            return View();
-        }
-
-        public IActionResult OrdersImport()
-        {
-            Orders.ImportOrders();
-
-            return RedirectToPage("/Shared/Orders");
-        }
-
+        #endregion
     }
 }
