@@ -50,7 +50,7 @@
         nav {
             background-color: #4e73df;
             color: #fff;
-            width: 200px;
+            width: 260px;
             height: 100%;
             position: fixed;
             top: 0;
@@ -130,34 +130,6 @@
             }
 
         table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 70%;
-            margin: 15px;
-        }
-
-        td, th {
-            border: 1px solid #4E73DF;
-            text-align: center;
-        }
-
-        tr:nth-child(even) {
-            background-color: #839DE9;
-        }
-
-        #textField {
-            background: transparent;
-        }
-
-        body {
-            background-color: #D0D9F6;
-            background-size: cover;
-            margin: 0;
-            font-size: 20px;
-            color: black;
-        }
-
-        table {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             border-collapse: collapse;
             width: 100%;
@@ -187,6 +159,12 @@
             padding: 5px;
         }
 
+        a {
+            color: white;
+        }
+
+        
+
     </style>
     <script>
         function f(id) {
@@ -204,15 +182,15 @@
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
-            <li><a asp-area="" asp-page="/Shared/Products">Produkty</a></li>
-            <li><a asp-area="" asp-page="/Shared/Orders">Zamówienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/Cartons">Kartony</a></li>
-            <li><a asp-area="" asp-page="/Shared/Stats">Statystyki</a></li>
-            <li><a asp-area="" asp-page="/Shared/Settings">Zarządzaj</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage.png" alt="mainpage" width="35px" height="35px" />   Strona główna</a></li>
+            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
+            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
+            <li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>
+            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
             <li></li>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/Index">Wyloguj</a></li>
+            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
     </nav>
     <div>
     </div>
@@ -222,11 +200,11 @@
         <tr>
             <th><a asp-controller="Sort" asp-action="SortOrders1">ID_zamowienia</a></th>
             <th><a asp-controller="Sort" asp-action="SortOrders2">Karton</a></th>
-            <th><a asp-controller="Sort" asp-action="SortOrders3">Karton2</a></th>
-            <th><a asp-controller="Sort" asp-action="SortOrders4">czy_karton_na_stanie</a></th>
-            <th><a asp-controller="Sort" asp-action="SortOrders5">sku</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders3">Karton drugi</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders4">Karton na stanie</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders5">SKU</a></th>
             <th><a asp-controller="Sort" asp-action="SortOrders6">ilosc</a></th>
-            <th><a asp-controller="Sort" asp-action="SortOrders7">czy_na_stanie</a></th>
+            <th><a asp-controller="Sort" asp-action="SortOrders7">Czy na stanie</a></th>
         </tr>
         @if (Model != null && Model.OrdersList != null)
         {

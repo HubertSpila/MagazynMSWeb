@@ -47,7 +47,7 @@
         nav {
             background-color: #4e73df;
             color: #fff;
-            width: 200px;
+            width: 260px;
             height: 100%;
             position: fixed;
             top: 0;
@@ -183,15 +183,15 @@
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/MainPage">Strona główna</a></li>
-            <li><a asp-area="" asp-page="/Shared/Products">Produkty</a></li>
-            <li><a asp-area="" asp-page="/Shared/Orders">Zamówienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/Cartons">Kartony</a></li>
-            <li><a asp-area="" asp-page="/Shared/Stats">Statystyki</a></li>
-            <li><a asp-area="" asp-page="/Shared/Settings">Zarządzaj</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage.png" alt="mainpage" width="35px" height="35px" />   Strona główna</a></li>
+            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
+            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
+            <li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>
+            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
             <li></li>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/Index">Wyloguj</a></li>
+            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
         </ul>
     </nav>
     <div>
@@ -225,24 +225,25 @@
     {
 
         <form method="post">
-            <input type="text" name="SKU" required>
-            <input type="text" name="Nazwa_produktu" required>
-            <input type="number" name="ID_kartonu" required>
-            <input type="number" name="Stan_magazynowy" required>
+            <input placeholder="SKU" type="text" name="SKU" required>
+            <input placeholder="Nazwa produktu"  type="text" name="Nazwa_produktu" required>
+            <input placeholder="ID kartonu" type="number" name="ID_kartonu" required>
+            <input placeholder="Stan magazynowy" type="number" name="Stan_magazynowy" required>
 
             <button type="submit" asp-asp-page-handler="Submit">Dodaj produkt</button>
         </form>
 
     }
 
-    <table style="width:80%">
+    <table style="width:100%">
         <tr>
             <th>SKU</th>
-            <th>Nazwa_produktu</th>
+            <th>Nazwa produktu</th>
             <th>Wysokosc</th>
             <th>Szerokosc</th>
             <th>Glebokosc</th>
             <th>Stan magazynowy</th>
+            <th>Zmien ilosc</th>
 
 
         </tr>
@@ -258,7 +259,7 @@
                     <td>@item.Karton.Szerokosc </td>
                     <td>@item.Karton.Glebokosc </td>
                     <td>@item.Stan_magazynowy </td>
-                </tr>
+                
                 <td>
                         @using (Html.BeginForm("ChangeQuantityProd", "App", FormMethod.Post))
                         {
@@ -266,13 +267,14 @@
                         <form method="post">
                             <input style="visibility: collapse;" type="text" name="SKU" value="@item.SKU" required>
 
-                            <input id="textField" type="number" name="Ilosc" required>
+                                <input style="border: 1px solid black; padding: 5px;"  id="textField" type="number" name="Ilosc" required>
 
                             <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
                         </form>
 
                         }
                 </td>
+                </tr>
                 }
             }
 
