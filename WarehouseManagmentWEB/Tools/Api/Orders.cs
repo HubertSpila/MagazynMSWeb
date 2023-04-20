@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using System.Net;
+using System.Text.Json;
 using WarehouseManagmentWEB.PostModels;
 using WarehouseManagmentWEB.Tools.Api.Models;
 
@@ -43,13 +44,14 @@ namespace WarehouseManagmentWEB.Tools.Api
             var request = new RestRequest("update", Method.Put);
             request.AddHeader("Authorization", $"Bearer {token}");
             request.AddHeader("Content-Type", "application/json");
-            var body = @"{
-" + "\n" +
-            $@"    ""id_zamowienia"":{form.Id_zamowienia},
-" + "\n" +
-            $@"    ""id_kartonu"" : {form.Id_kartonu}
-" + "\n" +
-            @"}";
+
+            JsonSerializerOptions _jsonSerializaerOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string body = JsonSerializer.Serialize(form, _jsonSerializaerOptions);
+
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
 

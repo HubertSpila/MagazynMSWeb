@@ -15,7 +15,7 @@ namespace WarehouseManagmentWEB.Controllers
         [HttpPost]
         public IActionResult Index(LoginModel form)
         {
-            if (form == null || form.Login == null || form.Password == null || form.Login == "" || form.Password == "")
+            if (form == null || form.Username == null || form.Password == null || form.Username == "" || form.Password == "")
                 return View(new IndexModel("Uzupełnij wszystkie pola w formularzu."));
 
             //Pobieranie tokena z API
@@ -62,7 +62,7 @@ namespace WarehouseManagmentWEB.Controllers
         {
             Cartons.AddCarton(form);
 
-            return RedirectToPage("/Shared/Cartons");
+            return RedirectToPage("/Shared/AddCartonPage");
         }
 
         [HttpPost]
@@ -88,7 +88,7 @@ namespace WarehouseManagmentWEB.Controllers
         {
             Products.AddProduct(form);
 
-            return RedirectToPage("/Shared/products");
+            return RedirectToPage("/Shared/AddProductPage");
         }
         #endregion
     }

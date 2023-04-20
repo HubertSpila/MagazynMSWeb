@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using System.Text.Json;
 using WarehouseManagmentWEB.PostModels;
 using WarehouseManagmentWEB.Tools.Api.Models;
 
@@ -44,13 +45,14 @@ namespace WarehouseManagmentWEB.Tools.Api
             var request = new RestRequest("update", Method.Put);
             request.AddHeader("Authorization", $"Bearer {token}");
             request.AddHeader("Content-Type", "application/json");
-            var body = @"{
-" + "\n" +
-            $@"    ""id"":{form.Id},
-" + "\n" +
-            $@"    ""ilosc"" : {form.Ilosc}
-" + "\n" +
-            @"}";
+            
+            JsonSerializerOptions _jsonSerializaerOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string body = JsonSerializer.Serialize(form, _jsonSerializaerOptions);
+
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
 
@@ -64,19 +66,14 @@ namespace WarehouseManagmentWEB.Tools.Api
             var request = new RestRequest("add", Method.Post);
             request.AddHeader("Authorization", $"Bearer {token}");
             request.AddHeader("Content-Type", "application/json");
-            var body = @"{
-" + "\n" +
-$@"    ""ID_kartonu"": {form.ID_kartonu},
-" + "\n" +
-$@"    ""Wysokosc"" : {form.Wysokosc},
-" + "\n" +
-$@"    ""Szerokosc"" : {form.Szerokosc},
-" + "\n" +
-$@"    ""Glebokosc"" : {form.Glebokosc},
-" + "\n" +
-$@"    ""Stan_magazynowy"" : {form.Stan_magazynowy}
-" + "\n" +
-@"}";
+
+            JsonSerializerOptions _jsonSerializaerOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string body = JsonSerializer.Serialize(form, _jsonSerializaerOptions);
+
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
 

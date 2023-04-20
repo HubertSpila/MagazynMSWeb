@@ -30,11 +30,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <link rel="stylesheet" type="text/css" href="styl.css" />
-    
+
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#myTable').DataTable();
         });
     </script>
@@ -152,9 +152,9 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        
 
-        
+
+
 
         th {
             background-color: #4E73DF;
@@ -175,6 +175,16 @@
             color: white;
         }
 
+        .red-bold {
+            color: red;
+            font-weight: bold;
+        }
+
+        .green-bold {
+            color: green;
+            font-weight: bold;
+        }
+
     </style>
     <script>
         function f(id) {
@@ -191,15 +201,16 @@
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage.png" alt="mainpage" width="35px" height="35px" />   Strona główna</a></li>
-            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
-            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
-            <li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>
-            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage1.png" alt="mainpage" width="35px" height="35px" />   Panel główny</a></li>
+            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product1.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
+            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders1.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons1.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
+            @*<li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats1.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>*@
+            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options1.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
             <li></li>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
+            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout1.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
+            @*<button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button>*@
         </ul>
     </nav>
     <div>
@@ -216,8 +227,9 @@
                 <th><a asp-controller="Sort" asp-action="SortCartons2">Wysokosc</a></th>
                 <th><a asp-controller="Sort" asp-action="SortCartons3">Szerokosc</a></th>
                 <th><a asp-controller="Sort" asp-action="SortCartons4">Glebokosc</a></th>
-                <th><a asp-controller="Sort" asp-action="SortCartons5">Stan_magazynowy</a></th>
-                <th><a asp-controller="Sort" asp-action="SortCartons6">Potrzebna_ilosc</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons5">Stan magazynowy</a></th>
+                <th><a asp-controller="Sort" asp-action="SortCartons6">Potrzebna ilosc</a></th>
+                <th>Zmien ilosc</th>
             </tr>
         </thead>
         <tbody>
@@ -225,35 +237,44 @@
             {
                 foreach (var item in Model.CartonsList)
                 {
-                    <tr>
-                        <td>@item.ID_kartonu </td>
-                        <td>@item.Wysokosc </td>
-                        <td>@item.Szerokosc </td>
-                        <td>@item.Glebokosc </td>
-                        <td>@item.Stan_magazynowy </td>
-                        <td>@item.Potrzebna_ilosc</td>
-                        <td>
-                            @using (Html.BeginForm("ChangeQuantity", "App", FormMethod.Post))
-                            {
 
-                                <form method="post">
-                                    <input style="visibility: collapse; width: 1px" type="number" name="Id" value="@item.ID_kartonu" required>
 
-                                    <input id="textField" type="number" name="Ilosc" required>
+                    <tr @if (item.Potrzebna_ilosc > item.Stan_magazynowy)
+                    {
+                        <text>class="red-bold"</text>
+                    }
+                    else if (item.Potrzebna_ilosc < item.Stan_magazynowy)
+                    {
+                        <text>class="green-bold"</text>
+                    }>
+                            <td style="color:black">@item.ID_kartonu </td>
+                            <td style="color:black">@item.Wysokosc </td>
+                            <td style="color:black">@item.Szerokosc </td>
+                            <td style="color:black">@item.Glebokosc </td>
+                            <td>@item.Stan_magazynowy </td>
+                            <td>@item.Potrzebna_ilosc</td>
+                            <td>    
+                        @using (Html.BeginForm("ChangeQuantity", "App", FormMethod.Post))
+                        {
 
-                                    <button type="submit" asp-asp-page-handler="Submit">Zmień</button>
-                                </form>
+                            <form method="post">
+                            <input style="visibility: collapse; width: 1px" type="number" name="Id" value="@item.ID_kartonu" required>
+                             <input style="border: 1px solid black; padding: 5px;" id="textField" value="@item.Stan_magazynowy" type="number" name="Ilosc" required>
+                            <button type="submit" asp-asp-page-handler="Submit" onclick="return confirm('Czy na pewno chcesz zmienić ilość kartonów o ID @item.ID_kartonu?')">Zmień</button>
+                            </form>
 
-                            }
-                        </td>
 
-                    </tr>
+                        }
+                            </td>
+
+                     </tr>
                 }
             }
         </tbody>
     </table>
 
-    
+
+
 
 
     <footer>

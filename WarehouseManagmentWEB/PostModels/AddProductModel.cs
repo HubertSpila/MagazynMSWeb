@@ -6,6 +6,7 @@
         public string Nazwa_produktu { get; set; }
         public string ID_kartonu { get; set; }
         public int Stan_magazynowy { get; set; }
+        public string Parametry { get; set; }   
         
 
     }

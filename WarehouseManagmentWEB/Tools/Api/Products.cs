@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using System.Text.Json;
 using WarehouseManagmentWEB.PostModels;
 using WarehouseManagmentWEB.Tools.Api.Models;
 
@@ -47,20 +48,13 @@ namespace WarehouseManagmentWEB.Tools.Api
             var request = new RestRequest("products", Method.Post);
             request.AddHeader("Authorization", $"Bearer {token}");
             request.AddHeader("Content-Type", "application/json");
-            var body = @"{
-" + "\n" +
-            $@"    ""SKU"": ""{form.SKU}"",
-" + "\n" +
-            $@"    ""Nazwa_produktu"" : ""{form.Nazwa_produktu}"",
-" + "\n" +
-            $@"    ""ID_kartonu"" : {form.ID_kartonu},
-" + "\n" +
-            $@"    ""Stan_magazynowy"" : {form.Stan_magazynowy},
-" + "\n" +
-            $@"    ""Potrzebna_ilosc"" : 0
 
-" + "\n" +
-            @"}";
+            JsonSerializerOptions _jsonSerializaerOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string body = JsonSerializer.Serialize(form, _jsonSerializaerOptions);
 
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
@@ -75,13 +69,14 @@ namespace WarehouseManagmentWEB.Tools.Api
             var request = new RestRequest("update", Method.Put);
             request.AddHeader("Authorization", $"Bearer {token}");
             request.AddHeader("Content-Type", "application/json");
-            var body = @"{
-" + "\n" +
-            $@"    ""sku"": ""{form.SKU}"",
-" + "\n" +
-            $@"    ""ilosc"" : {form.Ilosc}
-" + "\n" +
-            @"}";
+
+            JsonSerializerOptions _jsonSerializaerOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string body = JsonSerializer.Serialize(form, _jsonSerializaerOptions);
+
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
 

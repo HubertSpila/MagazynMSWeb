@@ -183,15 +183,16 @@
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage.png" alt="mainpage" width="35px" height="35px" />   Strona główna</a></li>
-            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
-            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
-            <li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>
-            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage1.png" alt="mainpage" width="35px" height="35px" />   Panel główny</a></li>
+            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product1.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
+            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders1.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons1.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
+            @*<li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats1.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>*@
+            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options1.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
             <li></li>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
+            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout1.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
+            @*<button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button>*@
         </ul>
     </nav>
     <div>
@@ -227,10 +228,11 @@
         <form method="post">
             <input placeholder="SKU" type="text" name="SKU" required>
             <input placeholder="Nazwa produktu"  type="text" name="Nazwa_produktu" required>
+            <input placeholder="Parametry"  type="text" name="Parametry" required>
             <input placeholder="ID kartonu" type="number" name="ID_kartonu" required>
             <input placeholder="Stan magazynowy" type="number" name="Stan_magazynowy" required>
 
-            <button type="submit" asp-asp-page-handler="Submit">Dodaj produkt</button>
+            <button type="submit" asp-asp-page-handler="Submit"> </button>
         </form>
 
     }
@@ -239,6 +241,7 @@
         <tr>
             <th>SKU</th>
             <th>Nazwa produktu</th>
+            <th>Parametry</th>
             <th>Wysokosc</th>
             <th>Szerokosc</th>
             <th>Glebokosc</th>
@@ -255,6 +258,7 @@
                 <tr>
                     <td>@item.SKU </td>
                     <td>@item.Nazwa_produktu </td>
+                    <td>@item.Parametry </td>
                     <td>@item.Karton.Wysokosc </td>
                     <td>@item.Karton.Szerokosc </td>
                     <td>@item.Karton.Glebokosc </td>

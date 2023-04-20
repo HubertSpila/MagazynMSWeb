@@ -182,15 +182,16 @@
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage.png" alt="mainpage" width="35px" height="35px" />   Strona główna</a></li>
-            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
-            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
-            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
-            <li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>
-            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
+            <li><a asp-area="" asp-page="/Shared/MainPage"><img src="~/images/mainpage1.png" alt="mainpage" width="35px" height="35px" />   Panel główny</a></li>
+            <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product1.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
+            <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders1.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
+            <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons1.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
+            @*<li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/stats1.png" alt="stats" width="35px" height="35px" />   Statystyki</a></li>*@
+            <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options1.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
             <li></li>
             <li></li>
-            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
+            <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout1.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
+            @*<button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button>*@
     </nav>
     <div>
     </div>
@@ -223,7 +224,7 @@
                                 @using (Html.BeginForm("EntryCarton", "App", FormMethod.Post))
                                 {
                                     <form method="post">
-                                        <input style="visibility: collapse;" type="text" name="id_zamowienia" value="@item.iD_zamowienia" width="0" height="0" required>
+                                        <input type="hidden" name="id_zamowienia" value="@item.iD_zamowienia" width="0" height="0" required>
 
                                         <select id="selectField" name="id_kartonu" required>
                                             <option value=0 selected>Wybierz karton</option>
@@ -257,10 +258,10 @@
                             <td></td>
                             <td></td>
                         }
-
                         <td>@item.sku    </td>
                         <td>@item.ilosc    </td>
-                        <td>@item.czy_na_stanie</td>
+                        <td style="color: @(item.czy_na_stanie ? "green" : "red"); font-weight: @(item.czy_na_stanie ? "bold" : "normal")">@item.czy_na_stanie</td>
+
                     </tr>
                 }
             }

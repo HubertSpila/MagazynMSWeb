@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using WarehouseManagmentWEB.PostModels;
 using System.Net;
+using System.Text.Json;
 
 namespace WarehouseManagmentWEB.Tools.Api
 {
@@ -12,13 +13,14 @@ namespace WarehouseManagmentWEB.Tools.Api
             RestClient client = new RestClient("https://localhost:7145/api/");
             var request = new RestRequest("authentication", Method.Post);
             request.AddHeader("Content-Type", "application/json");
-            var body = @"{
-" + "\n" +
-            $@"        ""username"": ""{form.Login}"",
-" + "\n" +
-            $@"        ""password"": ""{form.Password}""
-" + "\n" +
-            @"    }";
+
+            JsonSerializerOptions _jsonSerializaerOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string body = JsonSerializer.Serialize(form, _jsonSerializaerOptions);
+            
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             var response = client.Execute(request);
 
