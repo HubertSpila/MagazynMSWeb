@@ -1,7 +1,23 @@
 ﻿@page
-@model IndexModel
+@using WarehouseManagmentWEB.Tools.Api;
+
+@model WarehouseManagmentWEB.Pages.Shared.ProductsModel
 @{
-    ViewData["Title"] = "Warehouse Management";
+    ViewBag.Title = "MainPage";
+
+
+    //var products = Products.GetProducts();
+    //bool avaliable = false;
+
+    //var cartons = Cartons.GetCartons();
+
+    /*string Filtr(bool avaliable = false)
+        {
+        if(avaliable) products =Products.GetAvailableProducts();
+        else products = Products.GetProducts();
+
+    return string.Empty;
+    }*/
 }
 
 <!DOCTYPE html>
@@ -16,7 +32,7 @@
 
     <style>
         body {
-            background-color: #fff;
+            background-color: #D0D9F6;
         }
 
         header {
@@ -68,7 +84,7 @@
         }
 
         .tile {
-            background-color: #D0D9F6;
+            background-color: #eee;
             width: calc(50% - 20px);
             padding: 20px;
             margin-bottom: 20px;
@@ -110,30 +126,47 @@
                 margin-right: 20px;
             }
 
-        button {
-            position: fixed;
-            bottom: 0;
-            margin: 15px;
-            color: #4e73df;
+        table {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-            button:hover {
-                background-color: #2b6cb0;
-                color: white;
-            }
-
-
-
-        img {
-            float: center;
-            justify-content: center;
+        td, th {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
         }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #4E73DF;
+            color: #fff;
+        }
+
+        #textField {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 5px;
+        }
+
+        a {
+            color: white;
+        }
+
     </style>
 </head>
 
 <meta charset="UTF-8">
 
 <header>
+    @*<p><a asp-controller="Sort" asp-action="AvaliableProd">Wyświetl stan magazynowy</a></p>*@
     <nav>
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
@@ -148,33 +181,60 @@
             <li></li>
             <li><a asp-area="" asp-page="/Shared/Index"><img src="~/images/logout1.png" alt="logout" width="35px" height="35px" />   Wyloguj</a></li>
             @*<button id="wylogowanie"><a asp-controller="App" asp-action="Index">Wyloguj</a> </button>*@
-
         </ul>
-    </nav>    <div>
+    </nav>
+    <div>
     </div>
 </header>
 
 <!-- Treść strony -->
-<main>
-    <div class="tiles">
-        <a class="tile" asp-area="" asp-page="/Shared/Products">
-            <h2>Produkty</h2>
-        </a>
-        <a class="tile" asp-area="" asp-page="/Shared/Orders">
-            <h2>Zamówienia</h2>
-        </a>
-        <a class="tile" asp-area="" asp-page="/Shared/Cartons">
-            <h2>Kartony</h2>
-        </a>
-        <a class="tile" asp-area="" asp-page="/Shared/Warehouse">
-            <h2>Magazyn</h2>
-        </a>
-    </div>
-</main>
+
+
+<table style="width:100%">
+
+    <tr>
+        <th><a asp-controller="Sort" asp-action="SortProducts1">SKU</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts2">Nazwa_produktu</a></th>
+        <th>Parametry</th>
+        <th><a asp-controller="Sort" asp-action="SortProducts3">Wysokosc</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts4">Szerokosc</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts5">Glebokosc</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts6">Stan magazynowy</a></th>
+        <th><a asp-controller="Sort" asp-action="SortProducts7">Potrzebna ilość</a></th>
+
+
+    </tr>
+    <tr>
+        @if (Model != null && Model.ProductsList != null)
+        {
+            foreach (var item in Model.ProductsList)
+            {
+                if (item.Stan_magazynowy >= 1)
+                {
+                <tr>
+                    <td>@item.SKU </td>
+                    <td>@item.Nazwa_produktu </td>
+                    <td>@item.Parametry </td>
+                    <td>@item.Karton.Wysokosc </td>
+                    <td>@item.Karton.Szerokosc </td>
+                    <td>@item.Karton.Glebokosc </td>
+                    <td>@item.Stan_magazynowy </td>
+                    <td>@item.Potrzebna_ilosc </td>
+                </tr>
+                }
+            }
+        }
+
+
+
+
+    </tr>
+</table>
+
 
 <!-- Stopka strony -->
 <footer>
-    <p>Strona wykonana przy użyciu technologii Razor Pages</p>
+    <p>Strona wykonana przy użyciu technologii Razor Pages - products</p>
 </footer>
 
 </html>
