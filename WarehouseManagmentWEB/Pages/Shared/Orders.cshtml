@@ -3,6 +3,7 @@
 @using WarehouseManagmentWEB.Controllers
 @using WarehouseManagmentWEB.Tools
 @using WarehouseManagmentWEB.Tools.Api;
+@using WarehouseManagmentWEB.Tools.Api.Models;
 
 @model WarehouseManagmentWEB.Pages.Shared.OrdersModel
 @{
@@ -10,6 +11,9 @@
 
     var cartons = Cartons.GetCartons();
 
+    List<ProductModel> stan = Products.GetAvailableProducts();
+
+    List<int> visibleZo = new List<int>();
 
     bool first = true;
 
@@ -17,6 +21,16 @@
     {
         first = f;
         return string.Empty;
+    }
+
+    string prop = "0";
+
+    string ListModify()
+    {
+        if (visibleZo.Any(z => z == Int32.Parse(prop))) visibleZo.Remove(Int32.Parse(prop));
+        else visibleZo.Add(Int32.Parse(prop));
+
+        return "";
     }
 }
 
@@ -174,6 +188,9 @@
 
 
         }
+        function onchange() {
+            @ListModify();
+        }
     </script>
 </head>
 <header>
@@ -186,7 +203,7 @@
             <li><a asp-area="" asp-page="/Shared/Products"><img src="~/images/product1.png" alt="product" width="35px" height="35px" />   Produkty</a></li>
             <li><a asp-area="" asp-page="/Shared/Orders"><img src="~/images/orders1.png" alt="ordes" width="35px" height="35px" />   Zamówienia</a></li>
             <li><a asp-area="" asp-page="/Shared/Cartons"><img src="~/images/cartons1.png" alt="cartons" width="35px" height="35px" />   Kartony</a></li>
-            <li><a asp-area="" asp-page="/Shared/Stats"><img src="~/images/logistics.png" alt="stats" width="35px" height="35px" />   Magazyn</a></li>
+            <li><a asp-area="" asp-page="/Shared/Warehouse"><img src="~/images/logistics.png" alt="stats" width="35px" height="35px" />   Magazyn</a></li>
             <li><a asp-area="" asp-page="/Shared/Settings"><img src="~/images/options1.png" alt="options" width="35px" height="35px" />   Zarządzaj</a></li>
             <li></li>
             <li></li>
@@ -260,9 +277,27 @@
                         }
                         <td>@item.sku    </td>
                         <td>@item.ilosc    </td>
-                        <td style="color: @(item.czy_na_stanie ? "green" : "red"); font-weight: @(item.czy_na_stanie ? "bold" : "normal")">@item.czy_na_stanie</td>
+                        <td style="color: @(item.czy_na_stanie ? "green" : "red"); font-weight: @(item.czy_na_stanie ? "bold" : "normal")">
+                            @item.czy_na_stanie
+                            <a asp-controller="Sort" asp-action="SortOrders1">v</a>
+                        </td>
 
                     </tr>
+                    @if (visibleZo.Any(x=>x == order.iD_zamowienia) && stan != null && stan.Any(x => x.SKU == item.sku))
+                    {
+                        foreach (var awaliableItem in stan.Where(x => x.SKU == item.sku))
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>@awaliableItem.Parametry</td>
+                                <td>@awaliableItem.Stan_magazynowy</td>
+                                <td>button</td>
+                            </tr>
+                        }
+                    }
                 }
             }
         }

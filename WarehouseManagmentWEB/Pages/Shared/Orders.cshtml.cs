@@ -123,5 +123,8 @@ namespace WarehouseManagmentWEB.Pages.Shared
         public void OnGet()
         {
         }
+        public void Funct()
+        {
+        }
     }
 }

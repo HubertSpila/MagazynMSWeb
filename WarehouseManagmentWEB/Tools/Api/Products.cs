@@ -22,7 +22,7 @@ namespace WarehouseManagmentWEB.Tools.Api
 
             return response;
         }
-        public static List<ProductModel>? GetAvailableProducts()
+        public static List<ProductModel> GetAvailableProducts()
         {
             string token = Singleton.TokenWithout();
 
@@ -33,6 +33,8 @@ namespace WarehouseManagmentWEB.Tools.Api
             request.AddParameter("application/json", body, ParameterType.RequestBody);
 
             List<ProductModel>? response = client.Execute<List<ProductModel>>(request).Data;
+
+            if(response == null ) return new List<ProductModel>();
 
             return response;
         }
