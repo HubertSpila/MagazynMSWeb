@@ -40,6 +40,24 @@ namespace WarehouseManagmentWEB.Controllers
             return RedirectToPage("/Shared/Orders");
         }
 
+
+        [HttpPost]
+        public IActionResult WerifyOrder(int Id)
+        {
+            Orders.WerifyOrder(Id);
+
+            return RedirectToPage("/Shared/Orders");
+        }
+        [HttpPost]
+        public IActionResult WarehouseOut(WarehouseOutModel form)
+        {
+            if (form.Parametry == null) form.Parametry = string.Empty;
+
+            Orders.WarehouseOut(form);
+
+            return RedirectToPage("/Shared/Orders");
+        }
+
         #region Cartons Managment
         [HttpPost]
         public IActionResult ChangeQuantity(ChangeCartonModel form)
@@ -78,6 +96,7 @@ namespace WarehouseManagmentWEB.Controllers
         [HttpPost]
         public IActionResult ChangeQuantityProd(ChangeProductModel form)
         {
+            if(form.Parametry == null) form.Parametry = string.Empty;
             Products.ChangeProduct(form);
 
             return RedirectToPage("/Shared/AddProductPage");

@@ -13,7 +13,6 @@
 
     List<ProductModel> stan = Products.GetAvailableProducts();
 
-    List<int> visibleZo = new List<int>();
 
     bool first = true;
 
@@ -23,15 +22,6 @@
         return string.Empty;
     }
 
-    string prop = "0";
-
-    string ListModify()
-    {
-        if (visibleZo.Any(z => z == Int32.Parse(prop))) visibleZo.Remove(Int32.Parse(prop));
-        else visibleZo.Add(Int32.Parse(prop));
-
-        return "";
-    }
 }
 
 
@@ -188,9 +178,6 @@
 
 
         }
-        function onchange() {
-            @ListModify();
-        }
     </script>
 </head>
 <header>
@@ -214,6 +201,8 @@
     </div>
 </header>
 <body>
+    
+
     <table>
         <tr>
             <th><a asp-controller="Sort" asp-action="SortOrders1">ID_zamowienia</a></th>
@@ -223,13 +212,14 @@
             <th><a asp-controller="Sort" asp-action="SortOrders5">SKU</a></th>
             <th><a asp-controller="Sort" asp-action="SortOrders6">ilosc</a></th>
             <th><a asp-controller="Sort" asp-action="SortOrders7">Czy na stanie</a></th>
+            <th>Zweryfikowano</th>
+            <th></th>
         </tr>
         @if (Model != null && Model.OrdersList != null)
         {
             @foreach (var order in Model.OrdersList)
             {
-                @SetFirst(true)
-                ;
+                @SetFirst(true);
 
                 @foreach (var item in order.pozycje)
                 {
@@ -278,12 +268,28 @@
                         <td>@item.sku    </td>
                         <td>@item.ilosc    </td>
                         <td style="color: @(item.czy_na_stanie ? "green" : "red"); font-weight: @(item.czy_na_stanie ? "bold" : "normal")">
-                            @item.czy_na_stanie
-                            <a asp-controller="Sort" asp-action="SortOrders1">v</a>
+                            @(item.czy_na_stanie? "Możliwy stan": "Brak")
+                        </td>
+                        <td>
+                            @((order.Zweryfikowano == null || order.Zweryfikowano == 0) && item.czy_na_stanie  ? "Do weryfikacji" : "Zweryfikowano")
+                        </td>
+                        <td>
+                            @if ((order.Zweryfikowano == null || order.Zweryfikowano == 0) && item.czy_na_stanie)
+                            {
+                                @using (Html.BeginForm("WerifyOrder", "App", FormMethod.Post))
+                                {
+                                    <form method="post">
+                                        <input style="visibility: collapse;" type="hidden" name="Id" value="@order.iD_zamowienia" required>
+
+                                        <button type="submit" asp-asp-page-handler="Submit">Zakończ weryfikację</button>
+                                    </form>
+                                }
+                            
+                            }
                         </td>
 
                     </tr>
-                    @if (visibleZo.Any(x=>x == order.iD_zamowienia) && stan != null && stan.Any(x => x.SKU == item.sku))
+                    @if (((order.Zweryfikowano == null || order.Zweryfikowano == 0) && item.czy_na_stanie) && stan != null && stan.Any(x => x.SKU == item.sku))
                     {
                         foreach (var awaliableItem in stan.Where(x => x.SKU == item.sku))
                         {
@@ -292,9 +298,21 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>@awaliableItem.Parametry</td>
                                 <td>@awaliableItem.Stan_magazynowy</td>
-                                <td>button</td>
+                                <td>
+                                    @using (Html.BeginForm("WarehouseOut", "App", FormMethod.Post))
+                                    {
+                                        <form method="post">
+                                            <input style="visibility: collapse;" type="hidden" name="SKU" value="@awaliableItem.SKU" required>
+                                            <input style="visibility: collapse;" type="hidden" name="Parametry" value="@awaliableItem.Parametry" required>
+
+                                            <button type="submit" asp-asp-page-handler="Submit">Ściągnij z magazynu</button>
+                                        </form>
+                                    }
+                                </td>
                             </tr>
                         }
                     }

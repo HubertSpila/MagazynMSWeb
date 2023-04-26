@@ -7,6 +7,7 @@
         public int? iD_kartonu2 { get; set; }
         public bool czy_na_stanie { get; set; }
         public List<ItemModel> pozycje { get; set; }
+        public int? Zweryfikowano { get; set; }
 
         public string ZwrocKarton1()
         {
