@@ -167,7 +167,14 @@
             color: white;
         }
 
-        
+        button a {
+            color: #4E73DF;
+            text-decoration: none;
+        }
+
+            button a:hover {
+                text-decoration: none;
+            }
 
     </style>
     <script>
@@ -181,7 +188,9 @@
     </script>
 </head>
 <header>
-    <p><a asp-controller="App" asp-action="OrdersImport">Pobierz zamówienia</a></p>
+    
+        <button><a asp-controller="App" asp-action="OrdersImport">Pobierz zamówienia</a></button>
+   
     <nav>
         <img src="~/images/logo.png" alt="logo" width="120px" height="120px" />
         <ul>
@@ -201,7 +210,7 @@
     </div>
 </header>
 <body>
-    
+
 
     <table>
         <tr>
@@ -219,7 +228,8 @@
         {
             @foreach (var order in Model.OrdersList)
             {
-                @SetFirst(true);
+                @SetFirst(true)
+                ;
 
                 @foreach (var item in order.pozycje)
                 {
@@ -268,10 +278,10 @@
                         <td>@item.sku    </td>
                         <td>@item.ilosc    </td>
                         <td style="color: @(item.czy_na_stanie ? "green" : "red"); font-weight: @(item.czy_na_stanie ? "bold" : "normal")">
-                            @(item.czy_na_stanie? "Możliwy stan": "Brak")
+                            @(item.czy_na_stanie ? "Możliwy stan" : "Brak")
                         </td>
                         <td>
-                            @((order.Zweryfikowano == null || order.Zweryfikowano == 0) && item.czy_na_stanie  ? "Do weryfikacji" : "Zweryfikowano")
+                            @((order.Zweryfikowano == null || order.Zweryfikowano == 0) && item.czy_na_stanie ? "Do weryfikacji" : "Zweryfikowano")
                         </td>
                         <td>
                             @if ((order.Zweryfikowano == null || order.Zweryfikowano == 0) && item.czy_na_stanie)
@@ -281,10 +291,10 @@
                                     <form method="post">
                                         <input style="visibility: collapse;" type="hidden" name="Id" value="@order.iD_zamowienia" required>
 
-                                        <button type="submit" asp-asp-page-handler="Submit">Zakończ weryfikację</button>
+                                        <button type="submit" asp-asp-page-handler="Submit">Zweryfikuj</button>
                                     </form>
                                 }
-                            
+
                             }
                         </td>
 
@@ -309,7 +319,7 @@
                                             <input style="visibility: collapse;" type="hidden" name="SKU" value="@awaliableItem.SKU" required>
                                             <input style="visibility: collapse;" type="hidden" name="Parametry" value="@awaliableItem.Parametry" required>
 
-                                            <button type="submit" asp-asp-page-handler="Submit">Ściągnij z magazynu</button>
+                                            <button type="submit" asp-asp-page-handler="Submit">Ekspedycja</button>
                                         </form>
                                     }
                                 </td>

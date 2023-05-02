@@ -237,6 +237,18 @@
 
     }
 
+    <p>Usuwanie produktu:</p>
+    @using (Html.BeginForm("DeleteProduct", "App", FormMethod.Post))
+    {
+
+        <form method="post">
+            <input placeholder="SKU" type="text" name="skuprod" required>
+
+            <button type="submit" asp-asp-page-handler="Submit">Usuń produkt</button>
+        </form>
+
+    }
+
     <table style="width:100%">
         <tr>
             <th>SKU</th>

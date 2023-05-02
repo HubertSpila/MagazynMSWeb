@@ -63,6 +63,19 @@ namespace WarehouseManagmentWEB.Tools.Api
 
             return response.StatusCode == System.Net.HttpStatusCode.OK;
         }
+        public static bool DeleteProduct(string sku)
+        {
+            string token = Singleton.TokenWithout();
+
+            var client = new RestClient("https://localhost:7145/api/products/");
+            var request = new RestRequest($"delete/{sku}", Method.Delete);
+            request.AddHeader("Authorization", $"Bearer {token}");
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = client.Execute(request);
+
+            return response.StatusCode == System.Net.HttpStatusCode.OK;
+        }
         public static bool ChangeProduct(ChangeProductModel form)
         {
             string token = Singleton.TokenWithout();

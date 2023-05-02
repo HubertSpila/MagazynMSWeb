@@ -109,6 +109,15 @@ namespace WarehouseManagmentWEB.Controllers
 
             return RedirectToPage("/Shared/AddProductPage");
         }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(string skuprod)
+        {
+            Products.DeleteProduct(skuprod);
+
+            return RedirectToPage("/Shared/AddProductPage");
+        }
         #endregion
+
     }
 }
