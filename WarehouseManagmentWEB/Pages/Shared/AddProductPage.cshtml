@@ -229,7 +229,15 @@
             <input placeholder="SKU" type="text" name="SKU" required>
             <input placeholder="Nazwa produktu"  type="text" name="Nazwa_produktu" required>
             <input placeholder="Parametry"  type="text" name="Parametry" required>
-            <input placeholder="ID kartonu" type="number" name="ID_kartonu" required>
+            
+            <select id="ID_kartonu" name="ID_kartonu" required>
+                <option value="">Wybierz ID kartonu</option>
+                @foreach (var item in cartons)
+                {
+                    <option value="@item.ID_kartonu">@item.Wysokosc x @item.Szerokosc x @item.Glebokosc</option>
+                }
+            </select>
+
             <input placeholder="Stan magazynowy" type="number" name="Stan_magazynowy" required>
 
             <button type="submit" asp-asp-page-handler="Submit"> Dodaj</button>
